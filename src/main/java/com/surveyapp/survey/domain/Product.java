@@ -27,7 +27,7 @@ public class Product extends BaseProduct {
     @OneToMany(
             mappedBy = "product",
             cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
+            fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private Set<Packsize> packsizes = new HashSet<>();
