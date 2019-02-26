@@ -1,9 +1,6 @@
 package com.surveyapp.survey.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -11,13 +8,13 @@ import lombok.*;
 @Entity
 @Table(name = "packsize")
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Packsize extends BasePacksize{
 
     @JsonIgnore
     @EqualsAndHashCode.Exclude
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Prod_ID", referencedColumnName = "ID")
     private Product product;
 

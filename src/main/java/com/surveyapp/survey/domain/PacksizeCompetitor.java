@@ -2,21 +2,19 @@ package com.surveyapp.survey.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.ManyToOne;
-import javax.persistence.JoinColumn;
+
+import javax.persistence.*;
 
 @Entity
 @Table(name = "competitor_packsize")
 @Getter
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class PacksizeCompetitor extends BasePacksize{
 
     @JsonIgnore
     @EqualsAndHashCode.Exclude
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Comp_ID")
     private Competitor competitor;
 
