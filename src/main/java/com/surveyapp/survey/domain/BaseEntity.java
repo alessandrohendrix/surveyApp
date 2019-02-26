@@ -4,12 +4,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @MappedSuperclass
-@Setter
 public class BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,5 +13,9 @@ public class BaseEntity {
 
     public Integer getID() {
         return ID;
+    }
+
+    public void setID(Integer ID) {
+        this.ID = ID;
     }
 }
