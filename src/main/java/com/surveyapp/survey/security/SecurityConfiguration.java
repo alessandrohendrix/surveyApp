@@ -29,7 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private JwtAuthEntryPoint unAuthorizedHandler;
     private static final String[] PUBLIC_MATCHERS = {
-            "/auth/**"
+            "/auth/**",
+            "/resetPassword/**"
     };
 
     @Bean

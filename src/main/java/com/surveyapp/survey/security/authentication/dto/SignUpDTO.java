@@ -1,4 +1,4 @@
-package com.surveyapp.survey.security.authentication;
+package com.surveyapp.survey.security.authentication.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;

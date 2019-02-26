@@ -12,7 +12,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter
 @Setter
 @NoArgsConstructor
 @EqualsAndHashCode
@@ -42,5 +41,17 @@ public class PasswordResetToken extends BaseEntity {
         this.expirationDate = expirationMinutes == 0?
                 creationDateTime.plusMinutes(DEFAULT_TOKEN_LENGTH_IN_MINUTES) :
                 creationDateTime.plusMinutes(expirationMinutes);
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public LocalDateTime getExpirationDate() {
+        return expirationDate;
     }
 }
