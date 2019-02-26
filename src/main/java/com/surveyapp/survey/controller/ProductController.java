@@ -10,6 +10,7 @@ import com.surveyapp.survey.service.ProductService;
 import com.surveyapp.survey.domain.Product;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.Valid;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -41,7 +42,7 @@ public class ProductController {
 
     @GetMapping("/products/{id}")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<?> findProductByID(@PathVariable String id) {
+    public ResponseEntity<?> getProductByID(@PathVariable String id) {
         try {
             Product product = this.productService.findByID(id);
             if(!userAuthService.isUserAdmin() && (!product.isPublished() || product.isRetired())) {
@@ -55,14 +56,14 @@ public class ProductController {
 
     @PostMapping("/products")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> addNewProduct(@RequestBody Product product) {
+    public ResponseEntity<?> addNewProduct(@Valid @RequestBody Product product) {
         Product newProduct = this.productService.saveProduct(product);
         return new ResponseEntity<>(newProduct, HttpStatus.CREATED);
     }
 
     @PutMapping("/products")
     @PreAuthorize("hasRole('ADMIN')")
-    public Product updateProduct(@RequestBody Product product) {
+    public Product updateProduct(@Valid @RequestBody Product product) {
         Product updatedProduct = this.productService.saveProduct(product);
         return updatedProduct;
     }

@@ -11,4 +11,6 @@ public interface CompetitorService {
     Set<Competitor> saveCompetitors(Set<Competitor> competitors);
 
     Set<Competitor> updateCompetitors(Set<Competitor> competitors);
+
+    Competitor findByID(Integer id);
 }
