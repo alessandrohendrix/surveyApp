@@ -31,7 +31,7 @@ public class PasswordResetTokenService {
     }
 
     public PasswordResetToken findByToken(String token) {
-        return passwordResetTokenRepository.findByToken(token);
+        return passwordResetTokenRepository.findByToken(token).orElseThrow(() -> new RuntimeException("Invalid token"));
     }
 
     public PasswordResetToken createPasswordRsetTokenForEmail(String email) {

@@ -1,9 +1,10 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.security.authentication.LoginDTO;
-import com.surveyapp.survey.security.authentication.SignUpDTO;
+import com.surveyapp.survey.security.authentication.dto.LoginDTO;
+import com.surveyapp.survey.security.authentication.dto.SignUpDTO;
 import com.surveyapp.survey.security.jwt.JwtResponse;
 import com.surveyapp.survey.security.service.UserAuthService;
+import com.surveyapp.survey.service.MailService;
 import com.surveyapp.survey.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,12 +23,14 @@ public class AuthenticationController {
 
     private final UserAuthService userAuthService;
     private final UserService userService;
+    private final MailService mailService;
     private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
 
     @Autowired
-    public AuthenticationController(UserAuthService userAuthService, UserService userService) {
+    public AuthenticationController(UserAuthService userAuthService, UserService userService, MailService mailService) {
         this.userAuthService = userAuthService;
         this.userService = userService;
+        this.mailService = mailService;
     }
 
     @PostMapping("/login")
