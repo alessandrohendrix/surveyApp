@@ -4,11 +4,13 @@ import com.surveyapp.survey.domain.Competitor;
 import com.surveyapp.survey.repository.CompetitorRepository;
 import com.surveyapp.survey.service.CompetitorService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+@Service
 public class CompetitorServiceImpl implements CompetitorService {
 
     private final CompetitorRepository competitorRepository;
@@ -23,6 +25,11 @@ public class CompetitorServiceImpl implements CompetitorService {
         Set<Competitor> competitors = new HashSet<>();
         this.competitorRepository.findAll().iterator().forEachRemaining(competitors::add);
         return competitors;
+    }
+
+    @Override
+    public Competitor findByID(Integer id) {
+        return competitorRepository.findById(id).orElseThrow(() -> new RuntimeException("Competitor not found"));
     }
 
     @Override

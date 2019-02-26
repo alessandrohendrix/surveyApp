@@ -1,6 +1,7 @@
 package com.surveyapp.survey.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
@@ -17,6 +18,7 @@ import java.util.Set;
 public class DiseaseArea extends BaseEntity{
 
     @Column(name = "Name")
+    @NotBlank
     private String name;
     @JsonIgnore
     @EqualsAndHashCode.Exclude
