@@ -22,6 +22,7 @@ public class ProductController {
     }
 
     @GetMapping("/products")
+    @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public Set<Product> getProducts() {
         Set<Product> products = this.productService.getProducts();
         return products;
