@@ -15,19 +15,12 @@ import org.springframework.stereotype.Service;
 public class UserAuthServiceImpl implements UserAuthService {
 
     private final AuthenticationManager authenticationManager;
-    private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
 
     @Autowired
-    public UserAuthServiceImpl(AuthenticationManager authenticationManager, PasswordEncoder passwordEncoder, JwtProvider jwtProvider) {
+    public UserAuthServiceImpl(AuthenticationManager authenticationManager, JwtProvider jwtProvider) {
         this.authenticationManager = authenticationManager;
-        this.passwordEncoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
-    }
-
-    @Override
-    public String encryptPassword(String password) {
-        return passwordEncoder.encode(password);
     }
 
     @Override

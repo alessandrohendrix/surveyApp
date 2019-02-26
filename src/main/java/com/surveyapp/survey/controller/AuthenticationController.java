@@ -47,7 +47,7 @@ public class AuthenticationController {
         }
         logger.info("BEGIN CREATION");
         // Account Creation
-        userService.createUser(signUpDTO.getUsername(), signUpDTO.getEmail(), userAuthService.encryptPassword(signUpDTO.getPassword()));
+        userService.createUser(signUpDTO.getUsername(), signUpDTO.getEmail(), signUpDTO.getPassword());
         return new ResponseEntity<>("User created", HttpStatus.CREATED);
     }
 }

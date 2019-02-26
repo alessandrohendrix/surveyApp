@@ -20,6 +20,10 @@ public class JwtUser implements UserDetails {
         this.ID = ID;
     }
 
+    public Integer getID() {
+        return ID;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;
