@@ -14,7 +14,7 @@ public class ProductDTO extends BaseProductDTO{
     @EqualsAndHashCode.Exclude
     private Set<DiseaseAreaDTO> diseaseAreas;
     @EqualsAndHashCode.Exclude
-    private Set<ProductPacksizeDTO> packsizes;
+    private Set<PacksizeProductDTO> packsizes;
     @EqualsAndHashCode.Exclude
     private Set<CompetitorDTO> competitors;
 

@@ -1,9 +1,15 @@
 package com.surveyapp.survey.service;
 
+import com.surveyapp.survey.domain.BaseProduct;
 import com.surveyapp.survey.domain.Product;
-import java.util.Set;
+import com.surveyapp.survey.domain.dto.BaseProductDTO;
+import com.surveyapp.survey.domain.dto.ProductDTO;
 
-public interface ProductService {
+import java.util.Iterator;
+import java.util.Set;
+import java.util.function.BiConsumer;
+
+public interface ProductService extends BaseProductService {
 
     Set<Product> getProducts();
 

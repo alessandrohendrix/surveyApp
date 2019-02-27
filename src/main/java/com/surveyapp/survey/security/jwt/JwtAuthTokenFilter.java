@@ -20,14 +20,16 @@ import org.slf4j.LoggerFactory;
 @NoArgsConstructor
 public class JwtAuthTokenFilter extends OncePerRequestFilter {
 
-    @Autowired
     private UserDetailsServiceImpl userDetailsService;
-
-    @Autowired
     private JwtProvider tokenProvider;
-
     private static final String REQUEST_HEADER_NAME="Authorization";
     private final Logger logger = LoggerFactory.getLogger(JwtAuthTokenFilter.class);
+
+    @Autowired
+    public JwtAuthTokenFilter(UserDetailsServiceImpl userDetailsService, JwtProvider tokenProvider) {
+        this.userDetailsService = userDetailsService;
+        this.tokenProvider = tokenProvider;
+    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,

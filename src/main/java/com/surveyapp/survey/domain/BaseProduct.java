@@ -1,16 +1,13 @@
 package com.surveyapp.survey.domain;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @MappedSuperclass
-@Setter
 @NoArgsConstructor
 @EqualsAndHashCode
 public abstract class BaseProduct extends BaseEntity {
@@ -38,7 +35,7 @@ public abstract class BaseProduct extends BaseEntity {
     @Column(name = "Logo", length = 100000)
     @Lob
     @EqualsAndHashCode.Exclude
-    private Byte[] logo;
+    private byte[] logo;
 
     @Column(name = "Published")
     @EqualsAndHashCode.Exclude
@@ -79,7 +76,7 @@ public abstract class BaseProduct extends BaseEntity {
         return indication;
     }
 
-    public Byte[] getLogo() {
+    public byte[] getLogo() {
         return logo;
     }
 
@@ -89,5 +86,33 @@ public abstract class BaseProduct extends BaseEntity {
 
     public boolean isRetired() {
         return retired;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMolecule(String molecule) {
+        this.molecule = molecule;
+    }
+
+    public void setProductClass(String productClass) {
+        this.productClass = productClass;
+    }
+
+    public void setIndication(String indication) {
+        this.indication = indication;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
+    }
+
+    public void setPublished(boolean published) {
+        this.published = published;
+    }
+
+    public void setRetired(boolean retired) {
+        this.retired = retired;
     }
 }
