@@ -1,7 +1,6 @@
 package com.surveyapp.survey.controller;
 
 import com.surveyapp.survey.domain.Competitor;
-import com.surveyapp.survey.security.service.UserAuthService;
 import com.surveyapp.survey.service.CompetitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

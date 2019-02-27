@@ -41,4 +41,8 @@ public class PasswordResetTokenService {
         PasswordResetToken resetToken = new PasswordResetToken(token, user, now, tokenExpirationInMinutes);
         return passwordResetTokenRepository.save(resetToken);
     }
+
+    public void deletePasswordResetToken(Integer tokenID) {
+        passwordResetTokenRepository.deleteById(tokenID);
+    }
 }

@@ -57,6 +57,7 @@ public class ResetPasswordController {
             PasswordResetToken passwordResetToken = passwordResetTokenService.findByToken(token);
             User user = passwordResetToken.getUser();
             userService.updateUserPassword(user, passwordResetDTO.getPassword());
+            passwordResetTokenService.deletePasswordResetToken(passwordResetToken.getID()); //consume token
             return new ResponseEntity<>("Password updated", HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
