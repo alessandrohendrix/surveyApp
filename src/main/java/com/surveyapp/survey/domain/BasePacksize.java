@@ -17,25 +17,25 @@ import javax.validation.constraints.NotBlank;
 @EqualsAndHashCode
 public abstract class BasePacksize extends BaseEntity{
 
-    @Column(name="amount")
+    @Column(name="Amount")
     @NotBlank
     @Min(value = 1)
-    int amount;
+    private int amount;
 
-    @Column(name = "type")
+    @Column(name = "Type")
     @NotBlank
-    String type;
+    private String type;
 
-    @Column(name="weight")
+    @Column(name="Weight")
     @NotBlank
     @Min(value = 0l)
-    double weight;
+    private double weight;
 
-    @Column(name = "measure")
+    @Column(name = "Measure")
     @NotBlank
-    String measure;
+    private String measure;
 
-    @Column(name = "volume")
+    @Column(name = "Volume")
     @EqualsAndHashCode.Exclude
     private boolean volume;
 }
