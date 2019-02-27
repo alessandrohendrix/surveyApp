@@ -46,7 +46,7 @@ public class ProductController {
         try {
             Product product = this.productService.findByID(id);
             if(!userAuthService.isUserAdmin() && (!product.isPublished() || product.isRetired())) {
-                throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+                return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
             return new ResponseEntity<>(product, HttpStatus.OK);
         } catch(Exception e) {

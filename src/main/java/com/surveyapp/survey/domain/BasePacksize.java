@@ -7,6 +7,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @MappedSuperclass
@@ -16,15 +17,25 @@ import javax.validation.constraints.NotBlank;
 @EqualsAndHashCode
 public abstract class BasePacksize extends BaseEntity{
 
-    @Column(name = "Packsize")
+    @Column(name="amount")
     @NotBlank
-    private String packsize;
+    @Min(value = 1)
+    int amount;
 
-    @Column(name = "Weight")
+    @Column(name = "type")
     @NotBlank
-    private String weight;
+    String type;
 
-    @Column(name = "Volume")
+    @Column(name="weight")
+    @NotBlank
+    @Min(value = 0l)
+    double weight;
+
+    @Column(name = "measure")
+    @NotBlank
+    String measure;
+
+    @Column(name = "volume")
     @EqualsAndHashCode.Exclude
     private boolean volume;
 }

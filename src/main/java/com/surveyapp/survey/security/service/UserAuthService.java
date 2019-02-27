@@ -1,6 +1,6 @@
 package com.surveyapp.survey.security.service;
 
-import com.surveyapp.survey.security.domain.Roles;
+import com.surveyapp.survey.security.domain.enums.Roles;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
