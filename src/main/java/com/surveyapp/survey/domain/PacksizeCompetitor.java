@@ -18,13 +18,6 @@ public class PacksizeCompetitor extends BasePacksize{
     @JoinColumn(name = "Comp_ID")
     private Competitor competitor;
 
-    /**public PacksizeCompetitor() {
-    }
-
-     public Competitor getCompetitor() {
-        return competitor;
-    } **/
-
     public void setCompetitor(Competitor competitor) {
         this.competitor = competitor;
     }

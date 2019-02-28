@@ -45,29 +45,4 @@ public class Competitor extends BaseProduct {
         this.packsizes.forEach(pack -> pack.setCompetitor(this));
     }
 
-    /** public Competitor() {}
-
-    public Set<DiseaseArea> getDiseaseAreas() {
-        return diseaseAreas;
-    }
-
-    public void setDiseaseAreas(Set<DiseaseArea> diseaseAreas) {
-        this.diseaseAreas = diseaseAreas;
-    }
-
-    public Set<PacksizeCompetitor> getPacksizes() {
-        return packsizes;
-    }
-
-    public void setPacksizes(Set<PacksizeCompetitor> packsizes) {
-        this.packsizes = packsizes;
-    }
-
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    } **/
 }

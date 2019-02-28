@@ -1,7 +1,6 @@
 package com.surveyapp.survey.domain;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -91,61 +90,4 @@ public abstract class BaseProduct extends BaseEntity {
         return retired;
     }
 
-    /** public BaseProduct() {}
-
-    public String getName() {
-        return name;
-    }
-
-    public String getMolecule() {
-        return molecule;
-    }
-
-    public String getProductClass() {
-        return productClass;
-    }
-
-    public String getIndication() {
-        return indication;
-    }
-
-    public byte[] getLogo() {
-        return logo;
-    }
-
-    public boolean isPublished() {
-        return published;
-    }
-
-    public boolean isRetired() {
-        return retired;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setMolecule(String molecule) {
-        this.molecule = molecule;
-    }
-
-    public void setProductClass(String productClass) {
-        this.productClass = productClass;
-    }
-
-    public void setIndication(String indication) {
-        this.indication = indication;
-    }
-
-    public void setLogo(byte[] logo) {
-        this.logo = logo;
-    }
-
-    public void setPublished(boolean published) {
-        this.published = published;
-    }
-
-    public void setRetired(boolean retired) {
-        this.retired = retired;
-    } **/
 }

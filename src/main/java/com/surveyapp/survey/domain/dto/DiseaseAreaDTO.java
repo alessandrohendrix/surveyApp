@@ -20,27 +20,4 @@ public class DiseaseAreaDTO implements Serializable {
     private String name;
     @EqualsAndHashCode.Exclude
     private int ID;
-
-    /** public DiseaseAreaDTO() {
-    }
-
-    public long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
-    } **/
 }

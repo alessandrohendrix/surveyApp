@@ -17,31 +17,4 @@ public class ProductDTO extends BaseProductDTO{
     private Set<PacksizeProductDTO> packsizes;
     @EqualsAndHashCode.Exclude
     private Set<CompetitorDTO> competitors;
-
-    /** public ProductDTO() {
-    }
-
-    public Set<DiseaseAreaDTO> getDiseaseAreas() {
-        return diseaseAreas;
-    }
-
-    public void setDiseaseAreas(Set<DiseaseAreaDTO> diseaseAreas) {
-        this.diseaseAreas = diseaseAreas;
-    }
-
-    public Set<PacksizeProductDTO> getPacksizes() {
-        return packsizes;
-    }
-
-    public void setPacksizes(Set<PacksizeProductDTO> packsizes) {
-        this.packsizes = packsizes;
-    }
-
-    public Set<CompetitorDTO> getCompetitors() {
-        return competitors;
-    }
-
-    public void setCompetitors(Set<CompetitorDTO> competitors) {
-        this.competitors = competitors;
-    } **/
 }
