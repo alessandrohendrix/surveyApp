@@ -30,7 +30,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private JwtAuthEntryPoint unAuthorizedHandler;
     private static final String[] PUBLIC_MATCHERS = {
             "/auth/**",
-            "/resetPassword/**"
+            "/resetPassword/**",
+            "/forgotPassword/**"
     };
 
     @Bean

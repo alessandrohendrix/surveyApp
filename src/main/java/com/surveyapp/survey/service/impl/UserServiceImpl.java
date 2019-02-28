@@ -3,7 +3,7 @@ package com.surveyapp.survey.service.impl;
 import com.surveyapp.survey.repository.RoleRepository;
 import com.surveyapp.survey.repository.UserRepository;
 import com.surveyapp.survey.security.domain.Role;
-import com.surveyapp.survey.security.domain.Roles;
+import com.surveyapp.survey.security.domain.enums.Roles;
 import com.surveyapp.survey.security.domain.User;
 import com.surveyapp.survey.service.UserService;
 import org.slf4j.Logger;

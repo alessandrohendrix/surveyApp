@@ -9,9 +9,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "product")
+@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Product extends BaseProduct {
 
@@ -47,4 +47,5 @@ public class Product extends BaseProduct {
     public void setPacksizeProduct() {
         this.packsizes.forEach(packsize -> packsize.setProduct(this));
     }
+
 }

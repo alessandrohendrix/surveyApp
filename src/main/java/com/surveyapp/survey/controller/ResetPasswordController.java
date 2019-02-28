@@ -1,7 +1,7 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.domain.dto.PasswordResetDTO;
-import com.surveyapp.survey.domain.dto.RequestPasswordResetDTO;
+import com.surveyapp.survey.security.domain.dto.PasswordResetDTO;
+import com.surveyapp.survey.security.domain.dto.RequestPasswordResetDTO;
 import com.surveyapp.survey.security.domain.PasswordResetToken;
 import com.surveyapp.survey.security.domain.User;
 import com.surveyapp.survey.security.service.impl.PasswordResetTokenService;
@@ -51,12 +51,13 @@ public class ResetPasswordController {
 
     @PutMapping("/resetPassword")
     @Transactional
-    public ResponseEntity<?> resetPassword(@RequestBody PasswordResetDTO passwordResetDTO) {
+    public ResponseEntity<?> resetPassword(@Valid @RequestBody PasswordResetDTO passwordResetDTO) {
         try {
             String token = passwordResetDTO.getToken();
             PasswordResetToken passwordResetToken = passwordResetTokenService.findByToken(token);
             User user = passwordResetToken.getUser();
             userService.updateUserPassword(user, passwordResetDTO.getPassword());
+            passwordResetTokenService.deletePasswordResetToken(passwordResetToken.getID()); //consume token
             return new ResponseEntity<>("Password updated", HttpStatus.OK);
         } catch(Exception e) {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

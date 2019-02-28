@@ -1,7 +1,6 @@
 package com.surveyapp.survey.domain;
 
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -10,9 +9,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @MappedSuperclass
+@EqualsAndHashCode
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
 public abstract class BaseProduct extends BaseEntity {
 
     @Column(name = "Name")
@@ -38,7 +37,7 @@ public abstract class BaseProduct extends BaseEntity {
     @Column(name = "Logo", length = 100000)
     @Lob
     @EqualsAndHashCode.Exclude
-    private Byte[] logo;
+    private byte[] logo;
 
     @Column(name = "Published")
     @EqualsAndHashCode.Exclude
@@ -79,7 +78,7 @@ public abstract class BaseProduct extends BaseEntity {
         return indication;
     }
 
-    public Byte[] getLogo() {
+    public byte[] getLogo() {
         return logo;
     }
 
@@ -90,4 +89,5 @@ public abstract class BaseProduct extends BaseEntity {
     public boolean isRetired() {
         return retired;
     }
+
 }

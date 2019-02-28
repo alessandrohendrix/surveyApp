@@ -10,9 +10,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "competitor")
+@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Competitor extends BaseProduct {
 
@@ -40,4 +40,9 @@ public class Competitor extends BaseProduct {
     public Competitor(String name, String molecule, String productClass, String indication, boolean published, boolean retired) {
         super(name, molecule, productClass, indication, published, retired);
     }
+
+    public void setPacksizeCompetitor() {
+        this.packsizes.forEach(pack -> pack.setCompetitor(this));
+    }
+
 }

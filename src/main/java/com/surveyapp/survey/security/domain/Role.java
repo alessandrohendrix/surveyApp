@@ -2,6 +2,7 @@ package com.surveyapp.survey.security.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.surveyapp.survey.domain.BaseEntity;
+import com.surveyapp.survey.security.domain.enums.Roles;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

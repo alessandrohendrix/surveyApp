@@ -7,9 +7,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "packsize")
-@Getter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
+@Getter
 public class Packsize extends BasePacksize{
 
     @JsonIgnore
@@ -21,4 +21,5 @@ public class Packsize extends BasePacksize{
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }

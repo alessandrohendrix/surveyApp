@@ -1,7 +1,7 @@
 package com.surveyapp.survey.repository;
 
 import com.surveyapp.survey.security.domain.Role;
-import com.surveyapp.survey.security.domain.Roles;
+import com.surveyapp.survey.security.domain.enums.Roles;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

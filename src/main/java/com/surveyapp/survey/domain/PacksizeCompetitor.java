@@ -7,8 +7,8 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "competitor_packsize")
-@Getter
 @EqualsAndHashCode(callSuper = true)
+@Getter
 @NoArgsConstructor
 public class PacksizeCompetitor extends BasePacksize{
 
@@ -18,7 +18,7 @@ public class PacksizeCompetitor extends BasePacksize{
     @JoinColumn(name = "Comp_ID")
     private Competitor competitor;
 
-    public void setProduct(Competitor competitor) {
+    public void setCompetitor(Competitor competitor) {
         this.competitor = competitor;
     }
 }

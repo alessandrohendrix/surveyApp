@@ -11,9 +11,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "diseaseArea")
+@EqualsAndHashCode
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 public class DiseaseArea extends BaseEntity{
 
@@ -32,4 +32,5 @@ public class DiseaseArea extends BaseEntity{
     public DiseaseArea(String name) {
         this.name = name;
     }
+
 }

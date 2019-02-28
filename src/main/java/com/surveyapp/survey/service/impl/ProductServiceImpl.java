@@ -1,14 +1,12 @@
 package com.surveyapp.survey.service.impl;
 
 import com.surveyapp.survey.domain.Product;
-import com.surveyapp.survey.repository.ProductPacksizeRepository;
 import com.surveyapp.survey.repository.ProductRepository;
 import com.surveyapp.survey.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -30,9 +28,9 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product findByID(String id) {
-        Optional<Product> product =  productRepository.findById(Integer.valueOf(id));
-        product.orElseThrow(() -> new RuntimeException("Product with id "+id+ " not found"));
-        return product.get();
+        Product product =  productRepository.findById(Integer.valueOf(id))
+                .orElseThrow(() -> new RuntimeException("Product with id "+id+ " not found"));
+        return product;
     }
 
     @Override
