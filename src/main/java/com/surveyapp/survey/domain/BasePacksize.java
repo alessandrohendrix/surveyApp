@@ -11,10 +11,10 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 
 @MappedSuperclass
+@EqualsAndHashCode
 @Getter
 @Setter
 @NoArgsConstructor
-@EqualsAndHashCode
 public abstract class BasePacksize extends BaseEntity{
 
     @Column(name="Amount")
@@ -38,4 +38,47 @@ public abstract class BasePacksize extends BaseEntity{
     @Column(name = "Volume")
     @EqualsAndHashCode.Exclude
     private boolean volume;
+
+    /** public BasePacksize() {
+    }
+
+    public int getAmount() {
+        return amount;
+    }
+
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public String getMeasure() {
+        return measure;
+    }
+
+    public void setMeasure(String measure) {
+        this.measure = measure;
+    }
+
+    public boolean isVolume() {
+        return volume;
+    }
+
+    public void setVolume(boolean volume) {
+        this.volume = volume;
+    } **/
 }

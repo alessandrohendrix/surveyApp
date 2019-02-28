@@ -20,17 +20,19 @@ import java.util.stream.Collectors;
 public class CompetitorController {
 
     private final CompetitorService competitorService;
+    private final CompetitorMapper competitorMapper;
 
     @Autowired
-    public CompetitorController(CompetitorService competitorService) {
+    public CompetitorController(CompetitorService competitorService, CompetitorMapper competitorMapper) {
         this.competitorService = competitorService;
+        this.competitorMapper = competitorMapper;
     }
 
     @GetMapping("/competitors")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getCompetitors() {
         Set<Competitor> competitors = competitorService.getCompetitors();
-        Set<CompetitorDTO> competitorDTOs = CompetitorMapper.INSTANCE.competitorsToCompetitorDTOs(competitors);
+        Set<CompetitorDTO> competitorDTOs = competitorMapper.competitorsToCompetitorDTOs(competitors);
         competitorService.setProductImgs(competitors, competitorDTOs, competitorService::setProductDTOImg);
         return new ResponseEntity<>(competitorDTOs, HttpStatus.OK);
     }
@@ -76,24 +78,24 @@ public class CompetitorController {
 
         Set<Competitor> newCompetitors = competitorDTOs
                 .stream()
-                .map(dto -> recreateCompetitor(dto))
+                .map(this::recreateCompetitor)
                 .collect(Collectors.toSet());
         Set<Competitor> savedCompetitors = serviceFunction.apply(newCompetitors);
         Set<CompetitorDTO> DTOs = savedCompetitors
                 .stream()
-                .map(competitor -> createCompetitorDTO(competitor))
+                .map(this::createCompetitorDTO)
                 .collect(Collectors.toSet());
         return DTOs;
     }
 
     private Competitor recreateCompetitor(CompetitorDTO competitorDTO) {
-        Competitor competitor = CompetitorMapper.INSTANCE.competitorDTOToCompetitor(competitorDTO);
+        Competitor competitor = competitorMapper.competitorDTOToCompetitor(competitorDTO);
         this.competitorService.setProductImg(competitor, competitorDTO);
         return competitor;
     }
 
     private CompetitorDTO createCompetitorDTO(Competitor competitor) {
-        CompetitorDTO dto = CompetitorMapper.INSTANCE.competitorToCompetitorDTO(competitor);
+        CompetitorDTO dto = competitorMapper.competitorToCompetitorDTO(competitor);
         this.competitorService.setProductDTOImg(competitor, dto);
         return dto;
     }

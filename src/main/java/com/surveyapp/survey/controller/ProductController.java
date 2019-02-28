@@ -21,18 +21,22 @@ public class ProductController {
 
     private final ProductService productService;
     private final UserAuthService userAuthService;
+    private final ProductMapper productMapper;
 
     @Autowired
-    public ProductController(ProductService productService, UserAuthService userAuthService) {
+    public ProductController(ProductService productService,
+                             UserAuthService userAuthService,
+                             ProductMapper productMapper) {
         this.productService = productService;
         this.userAuthService = userAuthService;
+        this.productMapper = productMapper;
     }
 
     @GetMapping("/products")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
     public ResponseEntity<?> getProducts() {
         Set<Product> products = this.productService.getProducts();
-        Set<ProductDTO> productDTOs = ProductMapper.INSTANCE.productsToProductDTOs(products);
+        Set<ProductDTO> productDTOs = productMapper.productsToProductDTOs(products);
         productService.setProductImgs(products, productDTOs, this.productService::setProductDTOImg);
         if(!userAuthService.isUserAdmin()) {
             Set<ProductDTO> filteredProducts = productDTOs
@@ -49,7 +53,7 @@ public class ProductController {
     public ResponseEntity<?> getProductByID(@PathVariable String id) {
         try {
             Product product = this.productService.findByID(id);
-            ProductDTO productDTO = ProductMapper.INSTANCE.productToProductDTO(product);
+            ProductDTO productDTO = productMapper.productToProductDTO(product);
             productService.setProductDTOImg(product, productDTO);
             if(!userAuthService.isUserAdmin() && (!product.isPublished() || product.isRetired())) {
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
@@ -88,13 +92,13 @@ public class ProductController {
     }
 
     private Product recreateProduct(ProductDTO productDTO) {
-        Product product = ProductMapper.INSTANCE.productDTOToProduct(productDTO);
+        Product product = productMapper.productDTOToProduct(productDTO);
         this.productService.setProductImg(product, productDTO);
         return product;
     }
 
     private ProductDTO createProductDTO(Product product) {
-        ProductDTO dto = ProductMapper.INSTANCE.productToProductDTO(product);
+        ProductDTO dto = productMapper.productToProductDTO(product);
         this.productService.setProductDTOImg(product, dto);
         return dto;
     }

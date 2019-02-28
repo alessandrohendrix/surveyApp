@@ -9,9 +9,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "product")
+@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 public class Product extends BaseProduct {
 
@@ -47,4 +47,29 @@ public class Product extends BaseProduct {
     public void setPacksizeProduct() {
         this.packsizes.forEach(packsize -> packsize.setProduct(this));
     }
+    /** public Product() {}
+
+    public Set<DiseaseArea> getDiseaseAreas() {
+        return diseaseAreas;
+    }
+
+    public void setDiseaseAreas(Set<DiseaseArea> diseaseAreas) {
+        this.diseaseAreas = diseaseAreas;
+    }
+
+    public Set<Packsize> getPacksizes() {
+        return packsizes;
+    }
+
+    public void setPacksizes(Set<Packsize> packsizes) {
+        this.packsizes = packsizes;
+    }
+
+    public Set<Competitor> getCompetitors() {
+        return competitors;
+    }
+
+    public void setCompetitors(Set<Competitor> competitors) {
+        this.competitors = competitors;
+    } **/
 }

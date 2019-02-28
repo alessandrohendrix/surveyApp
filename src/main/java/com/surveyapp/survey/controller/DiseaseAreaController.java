@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.Set;
 
@@ -18,35 +19,45 @@ import java.util.Set;
 public class DiseaseAreaController {
 
     private final DiseaseAreaService diseaseAreaService;
+    private final DiseaseAreaMapper diseaseAreaMapper;
 
     @Autowired
-    public DiseaseAreaController(DiseaseAreaService diseaseAreaService) {
+    public DiseaseAreaController(DiseaseAreaService diseaseAreaService, DiseaseAreaMapper diseaseAreaMapper) {
         this.diseaseAreaService = diseaseAreaService;
+        this.diseaseAreaMapper = diseaseAreaMapper;
     }
 
     @GetMapping({"/diseaseAreas"})
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> getDiseaseAreas() {
         Set<DiseaseArea> diseaseAreas = diseaseAreaService.getDiseaseAreas();
-        Set<DiseaseAreaDTO> diseaseAreaDTOs = DiseaseAreaMapper.INSTANCE.diseaseAreasToDiseaseAreaDTOs(diseaseAreas);
+        Set<DiseaseAreaDTO> diseaseAreaDTOs = diseaseAreaMapper.diseaseAreasToDiseaseAreaDTOs(diseaseAreas);
         return new ResponseEntity<>(diseaseAreaDTOs, HttpStatus.OK);
     }
 
     @PostMapping("/diseaseAreas")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addNewDiseaseAreas(@Valid @RequestBody Set<DiseaseAreaDTO> diseaseAreas) {
-        Set<DiseaseArea> newDiseaseAreas = DiseaseAreaMapper.INSTANCE.diseaseAreasDTOsToDiseaseAreas(diseaseAreas);
-        Set<DiseaseArea> createdDiseaseAreas = diseaseAreaService.saveDiseaseAreas(newDiseaseAreas);
-        return new ResponseEntity<>(createdDiseaseAreas, HttpStatus.CREATED);
+        try {
+            Set<DiseaseArea> newDiseaseAreas = diseaseAreaMapper.diseaseAreasDTOsToDiseaseAreas(diseaseAreas);
+            Set<DiseaseArea> createdDiseaseAreas = diseaseAreaService.saveDiseaseAreas(newDiseaseAreas);
+            return new ResponseEntity<>(createdDiseaseAreas, HttpStatus.CREATED);
+        } catch (ConstraintViolationException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Disease area name must not be empty");
+        }
     }
 
     @PutMapping("/diseaseAreas")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> updateDiseaseAreas(@Valid @RequestBody Set<DiseaseAreaDTO> diseaseAreas) {
-        Set<DiseaseArea> toUpdate = DiseaseAreaMapper.INSTANCE.diseaseAreasDTOsToDiseaseAreas(diseaseAreas);
-        Set<DiseaseArea> updated = diseaseAreaService.saveDiseaseAreas(toUpdate);
-        Set<DiseaseAreaDTO> DTOs = DiseaseAreaMapper.INSTANCE.diseaseAreasToDiseaseAreaDTOs(updated);
-        return new ResponseEntity<>(DTOs, HttpStatus.OK);
+        try {
+            Set<DiseaseArea> toUpdate = diseaseAreaMapper.diseaseAreasDTOsToDiseaseAreas(diseaseAreas);
+            Set<DiseaseArea> updated = diseaseAreaService.saveDiseaseAreas(toUpdate);
+            Set<DiseaseAreaDTO> DTOs = diseaseAreaMapper.diseaseAreasToDiseaseAreaDTOs(updated);
+            return new ResponseEntity<>(DTOs, HttpStatus.OK);
+        } catch(ConstraintViolationException e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Disease area name must not be empty");
+        }
     }
 
     @DeleteMapping("/diseaseAreas/{id}")

@@ -7,9 +7,9 @@ import lombok.*;
 
 @Entity
 @Table(name = "packsize")
-@Getter
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
+@Getter
 public class Packsize extends BasePacksize{
 
     @JsonIgnore
@@ -17,6 +17,10 @@ public class Packsize extends BasePacksize{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Prod_ID", referencedColumnName = "ID")
     private Product product;
+
+    /** public Product getProduct() {
+        return product;
+    } **/
 
     public void setProduct(Product product) {
         this.product = product;

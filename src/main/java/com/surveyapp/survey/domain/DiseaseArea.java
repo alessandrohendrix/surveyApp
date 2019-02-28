@@ -11,9 +11,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "diseaseArea")
+@EqualsAndHashCode
 @Getter
 @Setter
-@EqualsAndHashCode
 @NoArgsConstructor
 public class DiseaseArea extends BaseEntity{
 
@@ -32,4 +32,30 @@ public class DiseaseArea extends BaseEntity{
     public DiseaseArea(String name) {
         this.name = name;
     }
+
+    /** public DiseaseArea() {}
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
+    public Set<Competitor> getCompetitors() {
+        return competitors;
+    }
+
+    public void setCompetitors(Set<Competitor> competitors) {
+        this.competitors = competitors;
+    } **/
 }

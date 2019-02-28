@@ -1,6 +1,8 @@
 package com.surveyapp.survey.security.service;
 
+import com.surveyapp.survey.security.authentication.UserPrincipal;
 import com.surveyapp.survey.security.domain.enums.Roles;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +18,10 @@ public interface UserAuthService {
     UserDetails getUserDetails(Authentication auth);
 
     default boolean isUserAdmin() {
-        UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication();
+        UsernamePasswordAuthenticationToken token = (UsernamePasswordAuthenticationToken)SecurityContextHolder
+                .getContext()
+                .getAuthentication();
+        UserDetails user = (UserDetails)token.getPrincipal();
         Set<String> roles = user
                 .getAuthorities()
                 .stream()
