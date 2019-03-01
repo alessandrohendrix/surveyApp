@@ -1,9 +1,8 @@
-package com.surveyapp.survey.domain;
+package com.surveyapp.survey.domain.product;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import java.util.HashSet;
@@ -20,13 +19,11 @@ public class DiseaseArea extends BaseEntity{
     @Column(name = "Name")
     @NotBlank
     private String name;
-    @JsonIgnore
     @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "diseaseAreas")
+    @ManyToMany(mappedBy = "diseaseAreas", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<>();
-    @JsonIgnore
     @EqualsAndHashCode.Exclude
-    @ManyToMany(mappedBy = "diseaseAreas")
+    @ManyToMany(mappedBy = "diseaseAreas", fetch = FetchType.LAZY)
     private Set<Competitor> competitors = new HashSet<>();
 
     public DiseaseArea(String name) {

@@ -1,6 +1,6 @@
 package com.surveyapp.survey.repository;
 
-import com.surveyapp.survey.domain.DiseaseArea;
+import com.surveyapp.survey.domain.product.DiseaseArea;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,4 +1,4 @@
-package com.surveyapp.survey.domain;
+package com.surveyapp.survey.domain.product;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,12 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "PackMeasure")
+@Table(name = "PackType")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
-public class PackMeasure extends BaseEntity {
+public class PackType extends BaseEntity{
 
-    private String measure;
+    private String packType;
 }

@@ -1,4 +1,4 @@
-package com.surveyapp.survey.domain.dto;
+package com.surveyapp.survey.domain.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;

@@ -1,7 +1,7 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.domain.DiseaseArea;
-import com.surveyapp.survey.domain.dto.DiseaseAreaDTO;
+import com.surveyapp.survey.domain.product.DiseaseArea;
+import com.surveyapp.survey.domain.dto.product.DiseaseAreaDTO;
 import com.surveyapp.survey.service.DiseaseAreaService;
 import com.surveyapp.survey.utility.mappers.DiseaseAreaMapper;
 import org.springframework.beans.factory.annotation.Autowired;

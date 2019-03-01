@@ -1,4 +1,4 @@
-package com.surveyapp.survey.domain;
+package com.surveyapp.survey.domain.product;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

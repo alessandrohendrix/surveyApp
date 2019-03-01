@@ -1,6 +1,6 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.domain.dto.ProductDTO;
+import com.surveyapp.survey.domain.dto.product.ProductDTO;
 import com.surveyapp.survey.security.service.UserAuthService;
 import com.surveyapp.survey.utility.mappers.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.surveyapp.survey.service.ProductService;
-import com.surveyapp.survey.domain.Product;
+import com.surveyapp.survey.domain.product.Product;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;

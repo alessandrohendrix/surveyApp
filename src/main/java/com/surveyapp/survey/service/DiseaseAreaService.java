@@ -1,6 +1,6 @@
 package com.surveyapp.survey.service;
 
-import com.surveyapp.survey.domain.DiseaseArea;
+import com.surveyapp.survey.domain.product.DiseaseArea;
 import java.util.Set;
 
 public interface DiseaseAreaService {

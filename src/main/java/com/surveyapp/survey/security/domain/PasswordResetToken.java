@@ -1,9 +1,8 @@
 package com.surveyapp.survey.security.domain;
 
-import com.surveyapp.survey.domain.BaseEntity;
+import com.surveyapp.survey.domain.product.BaseEntity;
 import com.surveyapp.survey.utility.LocalDateTimeConverter;
 import lombok.EqualsAndHashCode;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;

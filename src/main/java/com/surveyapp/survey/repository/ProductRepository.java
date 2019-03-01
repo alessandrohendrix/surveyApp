@@ -1,7 +1,7 @@
 package com.surveyapp.survey.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import com.surveyapp.survey.domain.Product;
+import com.surveyapp.survey.domain.product.Product;
 import org.springframework.stereotype.Repository;
 
 @Repository

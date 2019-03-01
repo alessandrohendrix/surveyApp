@@ -1,7 +1,7 @@
 package com.surveyapp.survey.utility.mappers;
 
-import com.surveyapp.survey.domain.DiseaseArea;
-import com.surveyapp.survey.domain.dto.DiseaseAreaDTO;
+import com.surveyapp.survey.domain.product.DiseaseArea;
+import com.surveyapp.survey.domain.dto.product.DiseaseAreaDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;

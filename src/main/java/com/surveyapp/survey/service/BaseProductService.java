@@ -1,7 +1,7 @@
 package com.surveyapp.survey.service;
 
-import com.surveyapp.survey.domain.BaseProduct;
-import com.surveyapp.survey.domain.dto.BaseProductDTO;
+import com.surveyapp.survey.domain.product.BaseProduct;
+import com.surveyapp.survey.domain.dto.product.BaseProductDTO;
 import com.surveyapp.survey.utility.ByteToBase64Converter;
 
 import java.util.Iterator;

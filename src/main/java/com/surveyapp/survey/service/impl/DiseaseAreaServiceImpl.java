@@ -1,6 +1,6 @@
 package com.surveyapp.survey.service.impl;
 
-import com.surveyapp.survey.domain.DiseaseArea;
+import com.surveyapp.survey.domain.product.DiseaseArea;
 import com.surveyapp.survey.repository.DiseaseAreaRepository;
 import com.surveyapp.survey.service.DiseaseAreaService;
 import org.springframework.beans.factory.annotation.Autowired;

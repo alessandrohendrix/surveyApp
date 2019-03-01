@@ -1,4 +1,4 @@
-package com.surveyapp.survey.security;
+package com.surveyapp.survey.configuration;
 
 import com.surveyapp.survey.security.jwt.JwtAuthEntryPoint;
 import com.surveyapp.survey.security.jwt.JwtAuthTokenFilter;

@@ -1,11 +1,10 @@
 package com.surveyapp.survey.utility.mappers;
 
-import com.surveyapp.survey.domain.Product;
-import com.surveyapp.survey.domain.dto.ProductDTO;
+import com.surveyapp.survey.domain.product.Product;
+import com.surveyapp.survey.domain.dto.product.ProductDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 
 import java.util.Set;
 

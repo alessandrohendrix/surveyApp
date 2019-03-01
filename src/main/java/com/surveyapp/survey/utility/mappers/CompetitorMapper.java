@@ -1,7 +1,7 @@
 package com.surveyapp.survey.utility.mappers;
 
-import com.surveyapp.survey.domain.Competitor;
-import com.surveyapp.survey.domain.dto.CompetitorDTO;
+import com.surveyapp.survey.domain.product.Competitor;
+import com.surveyapp.survey.domain.dto.product.CompetitorDTO;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
