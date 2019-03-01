@@ -1,6 +1,6 @@
 package com.surveyapp.survey.service;
 
-import com.surveyapp.survey.domain.product.Product;
+import com.surveyapp.survey.domain.entities.product.Product;
 
 import java.util.Set;
 

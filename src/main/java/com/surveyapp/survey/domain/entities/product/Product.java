@@ -1,7 +1,8 @@
-package com.surveyapp.survey.domain.product;
+package com.surveyapp.survey.domain.entities.product;
 
 import javax.persistence.*;
 
+import com.surveyapp.survey.domain.entities.survey.Survey;
 import lombok.*;
 
 import java.util.HashSet;
@@ -39,6 +40,14 @@ public class Product extends BaseProduct {
             inverseJoinColumns = @JoinColumn(name = "Competitor_Middle_ID")
     )
     private Set<Competitor> competitors = new HashSet<>();
+
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "product",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private Set<Survey> surveys;
 
     public Product(Integer ID, String name, String molecule) {
         super(ID, name, molecule);

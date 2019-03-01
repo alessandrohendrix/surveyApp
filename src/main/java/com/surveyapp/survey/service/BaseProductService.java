@@ -1,6 +1,6 @@
 package com.surveyapp.survey.service;
 
-import com.surveyapp.survey.domain.product.BaseProduct;
+import com.surveyapp.survey.domain.entities.product.BaseProduct;
 import com.surveyapp.survey.domain.dto.product.BaseProductDTO;
 import com.surveyapp.survey.utility.ByteToBase64Converter;
 

@@ -1,4 +1,4 @@
-package com.surveyapp.survey.domain.product;
+package com.surveyapp.survey.domain.entities.product;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;

@@ -1,9 +1,6 @@
-package com.surveyapp.survey.domain.product;
+package com.surveyapp.survey.domain.entities.product;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -14,6 +11,7 @@ import javax.persistence.Table;
 @AllArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 public class PackMeasure extends BaseEntity {
 
     private String measure;

@@ -1,8 +1,10 @@
-package com.surveyapp.survey.domain.product;
+package com.surveyapp.survey.domain.entities.product;
 
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.surveyapp.survey.domain.entities.survey.CompetitorOpenQuestion;
+import com.surveyapp.survey.domain.entities.survey.CompetitorStandardQuestion;
 import lombok.*;
 
 import java.util.HashSet;
@@ -27,15 +29,36 @@ public class Competitor extends BaseProduct {
     @EqualsAndHashCode.Exclude
     @OneToMany(
             mappedBy = "competitor",
-            cascade = CascadeType.PERSIST,
+            cascade = CascadeType.ALL,
             fetch = FetchType.EAGER,
             orphanRemoval = true
     )
     private Set<PacksizeCompetitor> packsizes = new HashSet<>();
+
     @EqualsAndHashCode.Exclude
     @JsonIgnore
     @ManyToMany(mappedBy = "competitors")
     private Set<Product> products = new HashSet<>();
+
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "competitor",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private Set<CompetitorStandardQuestion> standardQuestions;
+
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
+    @OneToMany(
+            mappedBy = "competitor",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private Set<CompetitorOpenQuestion> openQuestions;
 
     public Competitor(String name, String molecule, String productClass, String indication, boolean published, boolean retired) {
         super(name, molecule, productClass, indication, published, retired);

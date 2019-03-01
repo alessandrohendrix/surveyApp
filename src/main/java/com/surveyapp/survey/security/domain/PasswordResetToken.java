@@ -1,6 +1,6 @@
 package com.surveyapp.survey.security.domain;
 
-import com.surveyapp.survey.domain.product.BaseEntity;
+import com.surveyapp.survey.domain.entities.product.BaseEntity;
 import com.surveyapp.survey.utility.LocalDateTimeConverter;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;

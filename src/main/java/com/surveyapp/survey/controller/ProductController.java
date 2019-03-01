@@ -9,7 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import com.surveyapp.survey.service.ProductService;
-import com.surveyapp.survey.domain.product.Product;
+import com.surveyapp.survey.domain.entities.product.Product;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;

@@ -1,6 +1,6 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.domain.product.Competitor;
+import com.surveyapp.survey.domain.entities.product.Competitor;
 import com.surveyapp.survey.domain.dto.product.CompetitorDTO;
 import com.surveyapp.survey.service.CompetitorService;
 import com.surveyapp.survey.utility.mappers.CompetitorMapper;

@@ -1,6 +1,6 @@
 package com.surveyapp.survey.utility.mappers;
 
-import com.surveyapp.survey.domain.product.Packsize;
+import com.surveyapp.survey.domain.entities.product.Packsize;
 import com.surveyapp.survey.domain.dto.product.PacksizeDTO;
 import com.surveyapp.survey.domain.dto.product.PacksizeProductDTO;
 import org.mapstruct.InjectionStrategy;
