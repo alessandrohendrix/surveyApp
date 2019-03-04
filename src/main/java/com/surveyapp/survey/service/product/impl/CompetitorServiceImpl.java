@@ -1,8 +1,8 @@
-package com.surveyapp.survey.service.impl;
+package com.surveyapp.survey.service.product.impl;
 
 import com.surveyapp.survey.domain.entities.product.Competitor;
-import com.surveyapp.survey.repository.CompetitorRepository;
-import com.surveyapp.survey.service.CompetitorService;
+import com.surveyapp.survey.repository.product.CompetitorRepository;
+import com.surveyapp.survey.service.product.CompetitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

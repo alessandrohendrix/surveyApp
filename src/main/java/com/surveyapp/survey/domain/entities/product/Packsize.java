@@ -10,6 +10,7 @@ import lombok.*;
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @Getter
+@Setter
 public class Packsize extends BasePacksize{
 
     @JsonIgnore
@@ -17,9 +18,5 @@ public class Packsize extends BasePacksize{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Prod_ID", referencedColumnName = "ID")
     private Product product;
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
 
 }

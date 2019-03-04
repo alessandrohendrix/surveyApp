@@ -1,4 +1,4 @@
-package com.surveyapp.survey.repository;
+package com.surveyapp.survey.repository.product;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.surveyapp.survey.domain.entities.product.Competitor;

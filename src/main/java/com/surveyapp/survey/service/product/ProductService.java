@@ -1,4 +1,4 @@
-package com.surveyapp.survey.service;
+package com.surveyapp.survey.service.product;
 
 import com.surveyapp.survey.domain.entities.product.Product;
 

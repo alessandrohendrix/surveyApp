@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import com.surveyapp.survey.service.ProductService;
+import com.surveyapp.survey.service.product.ProductService;
 import com.surveyapp.survey.domain.entities.product.Product;
 import org.springframework.web.server.ResponseStatusException;
 

@@ -1,8 +1,9 @@
-package com.surveyapp.survey.security.domain;
+package com.surveyapp.survey.security.domain.entities;
 
 import com.surveyapp.survey.domain.entities.product.BaseEntity;
 import com.surveyapp.survey.utility.LocalDateTimeConverter;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
@@ -12,6 +13,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Setter
+@Getter
 @NoArgsConstructor
 @EqualsAndHashCode
 public class PasswordResetToken extends BaseEntity {
@@ -40,17 +42,5 @@ public class PasswordResetToken extends BaseEntity {
         this.expirationDate = expirationMinutes == 0?
                 creationDateTime.plusMinutes(DEFAULT_TOKEN_LENGTH_IN_MINUTES) :
                 creationDateTime.plusMinutes(expirationMinutes);
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public LocalDateTime getExpirationDate() {
-        return expirationDate;
     }
 }

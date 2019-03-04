@@ -1,6 +1,6 @@
-package com.surveyapp.survey.repository;
+package com.surveyapp.survey.repository.security;
 
-import com.surveyapp.survey.security.domain.PasswordResetToken;
+import com.surveyapp.survey.security.domain.entities.PasswordResetToken;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

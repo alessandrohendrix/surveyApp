@@ -1,6 +1,7 @@
 package com.surveyapp.survey.domain.entities.product;
 
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
 
 @MappedSuperclass
 @EqualsAndHashCode
+@Getter
 @Setter
 @NoArgsConstructor
 public abstract class BaseProduct extends BaseEntity {
@@ -60,34 +62,6 @@ public abstract class BaseProduct extends BaseEntity {
         this.indication = indication;
         this.published = published;
         this.retired = retired;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getMolecule() {
-        return molecule;
-    }
-
-    public String getProductClass() {
-        return productClass;
-    }
-
-    public String getIndication() {
-        return indication;
-    }
-
-    public byte[] getLogo() {
-        return logo;
-    }
-
-    public boolean isPublished() {
-        return published;
-    }
-
-    public boolean isRetired() {
-        return retired;
     }
 
 }

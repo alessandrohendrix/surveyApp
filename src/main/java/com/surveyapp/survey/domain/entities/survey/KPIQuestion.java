@@ -8,29 +8,50 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
+@Entity
+@Table(name = "kpi_question")
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-public class BaseQuestion extends BaseEntity {
+public class KPIQuestion extends BaseEntity {
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @EqualsAndHashCode.Exclude
+    @NotNull
+    @ManyToOne
     @JoinColumn(name = "section_id", referencedColumnName = "ID")
     private Section section;
+
+    @NotBlank
     private String question;
 
     @EqualsAndHashCode.Exclude
     private String details;
-    private String answetrFormat;
+
+    @NotBlank
+    private String answerFormat;
+
     @JsonIgnore
+    @EqualsAndHashCode.Exclude
     @OneToMany(
-            mappedBy = "baseQuestion",
+            mappedBy = "KPIQuestion",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             orphanRemoval = true
     )
-    private Set<BaseAnswer> baseAnswers;
+    private Set<KPIAnswer> KPIAnswers;
+
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "kpiQuestion",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private Set<ProductStandardQuestion> productStandardQuestions;
 
 }

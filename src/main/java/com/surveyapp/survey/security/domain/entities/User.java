@@ -1,8 +1,10 @@
-package com.surveyapp.survey.security.domain;
+package com.surveyapp.survey.security.domain.entities;
 
 import com.surveyapp.survey.domain.entities.product.BaseEntity;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -19,6 +21,8 @@ import java.util.Set;
                 @UniqueConstraint(columnNames = {"username"})
         })
 @NoArgsConstructor
+@Getter
+@Setter
 public class User extends BaseEntity {
 
     @NotBlank
@@ -56,37 +60,5 @@ public class User extends BaseEntity {
         this.email = email;
         this.password = password;
         this.role = role;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public Role getRole() {
-        return role;
     }
 }

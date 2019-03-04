@@ -1,9 +1,9 @@
 package com.surveyapp.survey.security.service.impl;
 
-import com.surveyapp.survey.repository.PasswordResetTokenRepository;
-import com.surveyapp.survey.repository.UserRepository;
-import com.surveyapp.survey.security.domain.PasswordResetToken;
-import com.surveyapp.survey.security.domain.User;
+import com.surveyapp.survey.repository.security.PasswordResetTokenRepository;
+import com.surveyapp.survey.repository.security.UserRepository;
+import com.surveyapp.survey.security.domain.entities.PasswordResetToken;
+import com.surveyapp.survey.security.domain.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

@@ -11,6 +11,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Table(name = "section")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -25,5 +26,19 @@ public class Section extends BaseEntity {
             cascade = CascadeType.DETACH,
             fetch = FetchType.LAZY
     )
-    private Set<BaseQuestion> baseQuestions;
+    private Set<KPIQuestion> KPIQuestions;
+
+    @OneToMany(
+            mappedBy = "section",
+            cascade = CascadeType.DETACH,
+            fetch = FetchType.LAZY
+    )
+    private Set<ProductOpenQuestion> productOpenQuestions;
+
+    @OneToMany(
+            mappedBy = "section",
+            cascade = CascadeType.DETACH,
+            fetch = FetchType.LAZY
+    )
+    private Set<CompetitorOpenQuestion> competitorOpenQuestions;
 }

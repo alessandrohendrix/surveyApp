@@ -7,20 +7,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.FetchType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
+@Entity
+@Table(name = "kpi_answer")
 @NoArgsConstructor
 @Getter
 @Setter
 @EqualsAndHashCode
-public class BaseAnswer extends BaseEntity {
+public class KPIAnswer extends BaseEntity {
 
     @JsonIgnore
+    @NotNull
+    @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "ID")
-    private BaseQuestion baseQuestion;
+    private KPIQuestion KPIQuestion;
+
+    @NotBlank
     private String answer;
 
 }

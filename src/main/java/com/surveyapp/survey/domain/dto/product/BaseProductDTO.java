@@ -11,6 +11,7 @@ import java.io.Serializable;
 @EqualsAndHashCode
 @NoArgsConstructor
 @Setter
+@Getter
 public abstract class BaseProductDTO implements Serializable {
 
     @EqualsAndHashCode.Exclude
@@ -36,36 +37,4 @@ public abstract class BaseProductDTO implements Serializable {
     private boolean retired;
     @EqualsAndHashCode.Exclude
     private String productLogo;
-
-    public int getID() {
-        return ID;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getMolecule() {
-        return molecule;
-    }
-
-    public String getProductClass() {
-        return productClass;
-    }
-
-    public String getIndication() {
-        return indication;
-    }
-
-    public boolean isPublished() {
-        return published;
-    }
-
-    public boolean isRetired() {
-        return retired;
-    }
-
-    public String getProductLogo() {
-        return productLogo;
-    }
 }

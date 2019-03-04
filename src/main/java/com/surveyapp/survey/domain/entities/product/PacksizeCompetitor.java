@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Table(name = "competitor_packsize")
 @EqualsAndHashCode(callSuper = true)
 @Getter
+@Setter
 @NoArgsConstructor
 public class PacksizeCompetitor extends BasePacksize{
 
@@ -17,8 +18,4 @@ public class PacksizeCompetitor extends BasePacksize{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Comp_ID")
     private Competitor competitor;
-
-    public void setCompetitor(Competitor competitor) {
-        this.competitor = competitor;
-    }
 }

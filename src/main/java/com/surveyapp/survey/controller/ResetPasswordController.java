@@ -2,8 +2,8 @@ package com.surveyapp.survey.controller;
 
 import com.surveyapp.survey.security.domain.dto.PasswordResetDTO;
 import com.surveyapp.survey.security.domain.dto.RequestPasswordResetDTO;
-import com.surveyapp.survey.security.domain.PasswordResetToken;
-import com.surveyapp.survey.security.domain.User;
+import com.surveyapp.survey.security.domain.entities.PasswordResetToken;
+import com.surveyapp.survey.security.domain.entities.User;
 import com.surveyapp.survey.security.service.impl.PasswordResetTokenService;
 import com.surveyapp.survey.service.MailService;
 import com.surveyapp.survey.service.UserService;
