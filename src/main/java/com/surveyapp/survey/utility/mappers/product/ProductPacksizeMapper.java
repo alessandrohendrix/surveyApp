@@ -1,4 +1,4 @@
-package com.surveyapp.survey.utility.mappers;
+package com.surveyapp.survey.utility.mappers.product;
 
 import com.surveyapp.survey.domain.entities.product.Packsize;
 import com.surveyapp.survey.domain.dto.product.PacksizeDTO;

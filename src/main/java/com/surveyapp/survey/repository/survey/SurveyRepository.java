@@ -21,12 +21,14 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
      * @param pageable
      * @return
      */
-    @Query("SELECT s FROM Survey s WHERE s.product.ID =: productId AND s.published=: published ORDER BY s.ID DESC")
+    @Query("SELECT s FROM Survey s WHERE s.product.ID=:productId ORDER BY s.ID DESC")
     Page<Survey> findMostRecentSurvey(
             @Param("productId") Integer productID,
-            @Param("published") boolean published,
             Pageable pageable
     );
+
+    @Query("SELECT s FROM Survey s WHERE s.product.ID=:productId AND s.published = true ORDER BY s.ID DESC")
+    Page<Survey> findLastPublishedSurvey(@Param("productId") Integer productID, Pageable pageable);
 
     /**
      * Select a product Survey based on creation date
@@ -34,17 +36,18 @@ public interface SurveyRepository extends JpaRepository<Survey, Integer> {
      * @param creationDate
      * @return
      */
-    @Query("SELECT s FROM Survey s WHERE s.product.ID =: productId AND s.creationDate =: creationDate")
+    @Query("SELECT s FROM Survey s WHERE s.product.ID =:productId AND s.creationDate =:creationDate AND s.published=true")
     Optional<Survey> findByCreationDateAndProductID(
             @Param("productId") Integer productID,
             @Param("creationDate") LocalDateTime creationDate
     );
 
     /**
-     * Get all the creations date of surveys related to a product
+     * Get all published surveys related to a product
      * @param productID
      * @return
      */
-    @Query("SELECT s.creationDate FROM Survey s WHERE s.product.ID =: productID AND s.published = true")
-    List<LocalDateTime> findCreationDates(@Param("productId") Integer productID);
+    @Query("SELECT s.creationDate, s.ID FROM Survey s WHERE s.product.ID =:productId AND s.published = true")
+    List<Survey> findCreationDates(@Param("productId") Integer productID);
+
 }

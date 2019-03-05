@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class CompetitorOpenCustomAnswer extends BaseEntity {
+public class CompetitorOpenCustomAnswer extends CustomAnswer {
 
     @NotNull
     @EqualsAndHashCode.Exclude
@@ -25,7 +25,4 @@ public class CompetitorOpenCustomAnswer extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "ID")
     private CompetitorOpenQuestion openQuestion;
-
-    @NotBlank
-    private String answer;
 }

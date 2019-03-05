@@ -16,6 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Competitor extends BaseProduct {
 
     @EqualsAndHashCode.Exclude

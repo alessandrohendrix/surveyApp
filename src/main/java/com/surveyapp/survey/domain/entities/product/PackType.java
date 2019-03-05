@@ -1,5 +1,6 @@
 package com.surveyapp.survey.domain.entities.product;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.surveyapp.survey.domain.entities.survey.CompetitorOpenQuestion;
 import com.surveyapp.survey.domain.entities.survey.CompetitorStandardQuestion;
 import com.surveyapp.survey.domain.entities.survey.ProductOpenQuestion;
@@ -20,6 +21,8 @@ public class PackType extends BaseEntity{
 
     private String packType;
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @OneToMany(
             mappedBy = "type",
             cascade = CascadeType.DETACH,
@@ -27,6 +30,8 @@ public class PackType extends BaseEntity{
     )
     private Set<Packsize> productPacksizes;
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @OneToMany(
             mappedBy = "type",
             cascade = CascadeType.DETACH,
@@ -34,6 +39,8 @@ public class PackType extends BaseEntity{
     )
     private Set<PacksizeCompetitor> competitorPacksizes;
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @OneToMany(
             mappedBy = "type",
             cascade = CascadeType.DETACH,
@@ -41,6 +48,8 @@ public class PackType extends BaseEntity{
     )
     private Set<ProductStandardQuestion> productStandardQuestions;
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @OneToMany(
             mappedBy = "type",
             cascade = CascadeType.DETACH,
@@ -48,6 +57,8 @@ public class PackType extends BaseEntity{
     )
     private Set<ProductOpenQuestion> productOpenQuestions;
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @OneToMany(
             mappedBy = "type",
             cascade = CascadeType.DETACH,
@@ -55,6 +66,8 @@ public class PackType extends BaseEntity{
     )
     private Set<CompetitorStandardQuestion> competitorStandardQuestions;
 
+    @EqualsAndHashCode.Exclude
+    @JsonIgnore
     @OneToMany(
             mappedBy = "type",
             cascade = CascadeType.DETACH,

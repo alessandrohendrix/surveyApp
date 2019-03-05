@@ -7,9 +7,13 @@ import java.util.Set;
 
 public interface SurveyService {
 
-    Survey findProductMostRecentSurvey(Integer productID, boolean published);
+    Survey findProductMostRecentSurvey(Integer productID);
+
+    Survey findLastPublishedSurvey(Integer productID);
 
     Survey findProductSurveyByCreationDate(Integer productID, LocalDateTime creationDate);
 
-    Set<LocalDateTime> findProductSurveyCreationDates(Integer productID);
+    Set<Survey> getAllPublishedSurveys(Integer productID);
+
+    void publishSurvey(Integer surveyID);
 }

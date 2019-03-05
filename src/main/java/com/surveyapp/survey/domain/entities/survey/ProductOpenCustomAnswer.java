@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class ProductOpenCustomAnswer extends BaseEntity {
+public class ProductOpenCustomAnswer extends CustomAnswer {
 
     @EqualsAndHashCode.Exclude
     @JsonIgnore
@@ -25,7 +25,4 @@ public class ProductOpenCustomAnswer extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "question_id", referencedColumnName = "ID")
     private ProductOpenQuestion openQuestion;
-
-    @NotBlank
-    private String answer;
 }

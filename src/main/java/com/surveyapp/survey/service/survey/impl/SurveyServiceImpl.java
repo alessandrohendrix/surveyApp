@@ -6,6 +6,7 @@ import com.surveyapp.survey.service.survey.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
@@ -22,10 +23,20 @@ public class SurveyServiceImpl implements SurveyService {
     }
 
     @Override
-    public Survey findProductMostRecentSurvey(Integer productID, boolean published) {
+    public Survey findProductMostRecentSurvey(Integer productID) {
         return surveyRepository
-                .findMostRecentSurvey(productID, published, PageRequest.of(0, 1))
-                .stream().findFirst()
+                .findMostRecentSurvey(productID, PageRequest.of(0, 1))
+                .stream()
+                .findFirst()
+                .orElseThrow(() -> new RuntimeException("Survey related to product with id "+productID+" not found"));
+    }
+
+    @Override
+    public Survey findLastPublishedSurvey(Integer productID) {
+        return surveyRepository
+                .findLastPublishedSurvey(productID, PageRequest.of(0,1))
+                .stream()
+                .findFirst()
                 .orElseThrow(() -> new RuntimeException("Survey related to product with id "+productID+" not found"));
     }
 
@@ -37,12 +48,22 @@ public class SurveyServiceImpl implements SurveyService {
     }
 
     @Override
-    public Set<LocalDateTime> findProductSurveyCreationDates(Integer productID) {
-        Set<LocalDateTime> timestamps = new HashSet<>();
+    public Set<Survey> getAllPublishedSurveys(Integer productID) {
+        Set<Survey> publishedSurveys = new HashSet<>();
         surveyRepository
                 .findCreationDates(productID)
                 .iterator()
-                .forEachRemaining(timestamps::add);
-        return timestamps;
+                .forEachRemaining(publishedSurveys::add);
+        return publishedSurveys;
+    }
+
+    @Override
+    @Transactional
+    public void publishSurvey(Integer surveyID) {
+        Survey survey = surveyRepository
+                .findById(surveyID)
+                .orElseThrow(() -> new RuntimeException("Survey with id "+surveyID+" not found"));
+        survey.setPublished(true);
+        surveyRepository.save(survey);
     }
 }

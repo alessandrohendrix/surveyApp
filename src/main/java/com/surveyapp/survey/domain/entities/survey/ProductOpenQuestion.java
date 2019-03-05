@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class ProductOpenQuestion extends Question {
+public class ProductOpenQuestion extends OpenQuestion {
 
     @EqualsAndHashCode.Exclude
     @OneToMany(
@@ -27,14 +27,5 @@ public class ProductOpenQuestion extends Question {
             orphanRemoval = true
     )
     private Set<ProductOpenCustomAnswer> productOpenCustomAnswers;
-
-    @NotNull
-    @EqualsAndHashCode.Exclude
-    @ManyToOne
-    @JoinColumn(name = "section", referencedColumnName = "ID")
-    private Section section;
-
-    @NotBlank
-    private String answerType;
 
 }

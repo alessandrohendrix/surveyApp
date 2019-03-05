@@ -22,7 +22,7 @@ public class KPIQuestion extends BaseEntity {
 
     @EqualsAndHashCode.Exclude
     @NotNull
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "section_id", referencedColumnName = "ID")
     private Section section;
 
@@ -45,6 +45,7 @@ public class KPIQuestion extends BaseEntity {
     )
     private Set<KPIAnswer> KPIAnswers;
 
+    @JsonIgnore
     @EqualsAndHashCode.Exclude
     @OneToMany(
             mappedBy = "kpiQuestion",
@@ -53,5 +54,15 @@ public class KPIQuestion extends BaseEntity {
             orphanRemoval = true
     )
     private Set<ProductStandardQuestion> productStandardQuestions;
+
+    @JsonIgnore
+    @EqualsAndHashCode.Exclude
+    @OneToMany(
+            mappedBy = "kpiQuestion",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            orphanRemoval = true
+    )
+    private Set<CompetitorStandardQuestion> competitorStandardQuestions;
 
 }

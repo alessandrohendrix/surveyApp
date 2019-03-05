@@ -1,5 +1,6 @@
 package com.surveyapp.survey.domain.entities.survey;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.surveyapp.survey.domain.entities.product.BaseEntity;
 import com.surveyapp.survey.domain.entities.product.Product;
 import com.surveyapp.survey.utility.LocalDateTimeConverter;
@@ -23,25 +24,28 @@ public class Survey extends BaseEntity {
     @Column(name = "creation_date")
     private LocalDateTime creationDate;
 
+    @JsonIgnore
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id")
     @EqualsAndHashCode.Exclude
     private Product product;
 
+    @JsonIgnore
     @EqualsAndHashCode.Exclude
     @OneToMany(
             mappedBy = "survey",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
     private Set<ProductStandardQuestion> productStandardQuestions;
 
+    @JsonIgnore
     @EqualsAndHashCode.Exclude
     @OneToMany(
             mappedBy = "survey",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -50,7 +54,7 @@ public class Survey extends BaseEntity {
     @EqualsAndHashCode.Exclude
     @OneToMany(
             mappedBy = "survey",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -59,7 +63,7 @@ public class Survey extends BaseEntity {
     @EqualsAndHashCode.Exclude
     @OneToMany(
             mappedBy = "survey",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.ALL,
             orphanRemoval = true
     )
@@ -71,4 +75,10 @@ public class Survey extends BaseEntity {
     public Survey(@NotNull LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
+
+    public Survey(@NotNull LocalDateTime creationDate, Integer ID) {
+        super(ID);
+        this.creationDate = creationDate;
+    }
+
 }

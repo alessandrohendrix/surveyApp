@@ -2,7 +2,7 @@ package com.surveyapp.survey.controller;
 
 import com.surveyapp.survey.domain.dto.product.ProductDTO;
 import com.surveyapp.survey.security.service.UserAuthService;
-import com.surveyapp.survey.utility.mappers.ProductMapper;
+import com.surveyapp.survey.utility.mappers.product.ProductMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

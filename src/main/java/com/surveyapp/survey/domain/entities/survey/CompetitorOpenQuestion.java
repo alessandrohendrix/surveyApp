@@ -17,7 +17,7 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class CompetitorOpenQuestion extends Question{
+public class CompetitorOpenQuestion extends OpenQuestion{
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)
@@ -33,13 +33,4 @@ public class CompetitorOpenQuestion extends Question{
             orphanRemoval = true
     )
     private Set<CompetitorOpenCustomAnswer> competitorOpenCustomAnswers;
-
-    @EqualsAndHashCode.Exclude
-    @NotNull
-    @ManyToOne
-    @JoinColumn(name = "section", referencedColumnName = "ID")
-    private Section section;
-
-    @NotBlank
-    private String answerType;
 }

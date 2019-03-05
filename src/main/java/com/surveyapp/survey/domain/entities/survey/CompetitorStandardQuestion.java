@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class CompetitorStandardQuestion extends Question {
+public class CompetitorStandardQuestion extends ProductStandardQuestion {
 
     @NotNull
     @ManyToOne(fetch = FetchType.LAZY)

@@ -28,6 +28,7 @@ public class Section extends BaseEntity {
     )
     private Set<KPIQuestion> KPIQuestions;
 
+    @JsonIgnore
     @OneToMany(
             mappedBy = "section",
             cascade = CascadeType.DETACH,
@@ -35,6 +36,7 @@ public class Section extends BaseEntity {
     )
     private Set<ProductOpenQuestion> productOpenQuestions;
 
+    @JsonIgnore
     @OneToMany(
             mappedBy = "section",
             cascade = CascadeType.DETACH,
