@@ -1,6 +1,8 @@
 package com.surveyapp.survey.domain.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.surveyapp.survey.domain.entities.product.PackMeasure;
+import com.surveyapp.survey.domain.entities.product.PackType;
 import lombok.*;
 
 import javax.validation.constraints.Min;
@@ -25,14 +27,14 @@ public abstract class PacksizeDTO implements Serializable {
     private int amount;
 
     @NotBlank
-    private String type;
+    private PackType type;
 
     @NotBlank
     @Min(value = 0l)
     private double weight;
 
     @NotBlank
-    private String measure;
+    private PackMeasure measure;
 
     @NotBlank
     @EqualsAndHashCode.Exclude

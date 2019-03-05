@@ -8,6 +8,7 @@ import com.surveyapp.survey.domain.entities.survey.ProductStandardQuestion;
 import lombok.*;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -17,8 +18,9 @@ import java.util.Set;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class PackMeasure extends BaseEntity {
+public class PackMeasure extends BaseEntity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private String measure;
 
     @EqualsAndHashCode.Exclude
