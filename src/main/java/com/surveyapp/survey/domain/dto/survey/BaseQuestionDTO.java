@@ -43,8 +43,4 @@ public abstract class BaseQuestionDTO implements Serializable {
     @NotNull
     @Min(1)
     private int questionRow;
-
-    @NotBlank
-    @NotNull
-    private String description;
 }

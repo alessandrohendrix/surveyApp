@@ -1,5 +1,6 @@
 package com.surveyapp.survey.domain.entities.survey;
 
+import com.surveyapp.survey.domain.entities.survey.Enum.SectionEnum;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,4 +22,10 @@ public class ProductStandardQuestion extends Question {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "kpi_question", referencedColumnName = "ID")
     private KPIQuestion kpiQuestion;
+
+
+    @Override
+    public SectionEnum getSectionName() {
+        return kpiQuestion.getSection().getSectionName();
+    }
 }

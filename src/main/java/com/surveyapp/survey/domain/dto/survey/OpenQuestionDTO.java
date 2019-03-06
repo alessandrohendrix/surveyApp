@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -15,4 +17,12 @@ import java.util.Set;
 public class OpenQuestionDTO extends BaseQuestionDTO {
 
     private Set<CustomAnswer> customAnswers;
+
+    @NotBlank
+    @NotNull
+    private String description;
+
+    @NotBlank
+    @NotNull
+    private String answerType;
 }

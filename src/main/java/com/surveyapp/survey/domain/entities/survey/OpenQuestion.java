@@ -1,5 +1,6 @@
 package com.surveyapp.survey.domain.entities.survey;
 
+import com.surveyapp.survey.domain.entities.survey.Enum.SectionEnum;
 import lombok.*;
 
 import javax.persistence.JoinColumn;
@@ -24,4 +25,9 @@ public abstract class OpenQuestion extends Question{
 
     @NotBlank
     private String answerType;
+
+    @Override
+    public SectionEnum getSectionName() {
+        return section.getSectionName();
+    }
 }

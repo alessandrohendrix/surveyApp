@@ -1,10 +1,8 @@
 package com.surveyapp.survey.domain.dto.survey;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -12,9 +10,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
+@EqualsAndHashCode
 public class SurveyInfoDTO implements Serializable {
 
+    @EqualsAndHashCode.Exclude
     private final long serialVersionUID = 1L;
+    private Integer ID;
+    @NotNull
     private LocalDateTime publishingDate;
+    @EqualsAndHashCode.Exclude
     private boolean published;
 }

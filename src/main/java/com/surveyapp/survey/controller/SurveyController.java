@@ -1,6 +1,9 @@
 package com.surveyapp.survey.controller;
 
+import com.surveyapp.survey.domain.dto.survey.SurveyCreationDTO;
+import com.surveyapp.survey.domain.dto.survey.SurveyInfoDTO;
 import com.surveyapp.survey.domain.entities.survey.Survey;
+import com.surveyapp.survey.service.survey.SurveySerializerService;
 import com.surveyapp.survey.service.survey.SurveyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,18 +19,21 @@ import java.util.Set;
 public class SurveyController {
 
     private final SurveyService surveyService;
+    private final SurveySerializerService surveySerializerService;
 
     @Autowired
-    public SurveyController(SurveyService surveyService) {
+    public SurveyController(SurveyService surveyService, SurveySerializerService surveySerializerService) {
         this.surveyService = surveyService;
+        this.surveySerializerService = surveySerializerService;
     }
 
     @GetMapping("/newest")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> getMostRecentSurvey(@RequestParam("productId") Integer productId) {
+    public ResponseEntity<?> getMostRecentSurveyQuestions(@RequestParam("productId") Integer productId) {
         try {
             Survey survey = surveyService.findProductMostRecentSurvey(productId);
-            return new ResponseEntity<>(survey, HttpStatus.OK);
+            SurveyCreationDTO surveyCreationDTO = surveySerializerService.generateSurveyCreationDTO(survey);
+            return new ResponseEntity<>(surveyCreationDTO, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
@@ -35,10 +41,11 @@ public class SurveyController {
 
     @GetMapping("/lastPublished")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<?> getLastPublishedSurvey(@RequestParam("productId") Integer productId) {
+    public ResponseEntity<?> getLastPublishedSurveyInfo(@RequestParam("productId") Integer productId) {
         try {
             Survey survey = surveyService.findLastPublishedSurvey(productId);
-            return new ResponseEntity<>(survey, HttpStatus.OK);
+            SurveyInfoDTO surveyInfoDTO = surveySerializerService.generateSurveyInfoDTO(survey);
+            return new ResponseEntity<>(surveyInfoDTO, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
@@ -46,13 +53,20 @@ public class SurveyController {
 
     @GetMapping("/allPublished")
     @PreAuthorize("hasRole('ADMIN') or hasRole('USER')")
-    public ResponseEntity<?> getAllPublishedSurveys(@RequestParam("productId") Integer productId) {
+    public ResponseEntity<?> getAllPublishedSurveysInfo(@RequestParam("productId") Integer productId) {
         try {
             Set<Survey> surveys = surveyService.getAllPublishedSurveys(productId);
-            return new ResponseEntity<>(surveys, HttpStatus.OK);
+            Set<SurveyInfoDTO> surveyInfoDTOs = surveySerializerService.generateSurveyInfoDTOs(surveys);
+            return new ResponseEntity<>(surveyInfoDTOs, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
+    }
+
+    @PostMapping("/creation")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> createSurvey(@RequestBody SurveyCreationDTO surveyCreationDTO) {
+        return null;
     }
 
     @PutMapping("/publish")

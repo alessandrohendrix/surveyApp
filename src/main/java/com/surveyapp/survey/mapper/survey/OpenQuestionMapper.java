@@ -6,12 +6,10 @@ import com.surveyapp.survey.domain.entities.survey.ProductOpenQuestion;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
-import org.springframework.stereotype.Component;
 
 import java.util.Set;
 
 @Mapper(componentModel = "spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
-@Component
 public interface OpenQuestionMapper {
 
     ProductOpenQuestion openQuestionDTOToProductOpenQuestion(OpenQuestionDTO openQuestionDTO);

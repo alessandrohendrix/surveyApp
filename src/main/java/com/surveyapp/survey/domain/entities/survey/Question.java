@@ -3,6 +3,7 @@ package com.surveyapp.survey.domain.entities.survey;
 import com.surveyapp.survey.domain.entities.product.BaseEntity;
 import com.surveyapp.survey.domain.entities.product.PackMeasure;
 import com.surveyapp.survey.domain.entities.product.PackType;
+import com.surveyapp.survey.domain.entities.survey.Enum.SectionEnum;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +22,7 @@ import javax.validation.constraints.NotNull;
 @Getter
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
-public class Question extends BaseEntity {
+public abstract class Question extends BaseEntity {
 
     @NotNull
     @EqualsAndHashCode.Exclude
@@ -60,5 +61,7 @@ public class Question extends BaseEntity {
     @NotBlank
     @NotNull
     private String description;
+
+    public abstract SectionEnum getSectionName();
 
 }
