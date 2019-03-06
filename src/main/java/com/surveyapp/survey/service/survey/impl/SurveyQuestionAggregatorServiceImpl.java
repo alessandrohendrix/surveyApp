@@ -10,10 +10,6 @@ import com.surveyapp.survey.domain.entities.survey.*;
 import com.surveyapp.survey.repository.survey.CompetitorOpenQuestionRepository;
 import com.surveyapp.survey.repository.survey.CompetitorStandardQuestionRepository;
 import com.surveyapp.survey.service.survey.SurveyQuestionAggregatorService;
-import com.surveyapp.survey.utility.mappers.product.CompetitorMapper;
-import com.surveyapp.survey.utility.mappers.product.ProductMapper;
-import com.surveyapp.survey.utility.mappers.survey.OpenQuestionMapper;
-import com.surveyapp.survey.utility.mappers.survey.StandardQuestionMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
