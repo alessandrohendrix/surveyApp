@@ -1,6 +1,7 @@
 package com.surveyapp.survey.controller;
 
 import com.surveyapp.survey.domain.dto.product.ProductDTO;
+import com.surveyapp.survey.mapper.product.ProductMapper;
 import com.surveyapp.survey.security.service.UserAuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
