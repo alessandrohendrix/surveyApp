@@ -4,9 +4,11 @@ import lombok.*;
 
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MappedSuperclass;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
+@MappedSuperclass
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
