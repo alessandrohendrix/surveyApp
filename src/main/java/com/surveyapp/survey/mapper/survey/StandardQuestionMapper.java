@@ -9,8 +9,10 @@ import org.mapstruct.Mapper;
 
 import java.util.Set;
 
-@Mapper(componentModel="spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
+@Mapper(uses = {KpiQuestionMapper.class},
+        componentModel="spring", injectionStrategy = InjectionStrategy.CONSTRUCTOR)
 public interface StandardQuestionMapper {
+
 
     StandardQuestionDTO standardQuestionToStandardQuestionDTO(ProductStandardQuestion productStandardQuestion);
 

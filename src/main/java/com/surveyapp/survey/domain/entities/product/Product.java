@@ -45,7 +45,7 @@ public class Product extends BaseProduct {
     @EqualsAndHashCode.Exclude
     @OneToMany(
             mappedBy = "product",
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
     private Set<Survey> surveys;

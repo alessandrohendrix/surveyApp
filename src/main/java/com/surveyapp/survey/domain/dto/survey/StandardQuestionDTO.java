@@ -8,8 +8,9 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
 public class StandardQuestionDTO extends BaseQuestionDTO {
 
     @NotNull
-    private KpiQuestionIdDTO kpiQuestionID;
+    private KpiQuestionIdDTO kpiQuestionIdDTO;
 }

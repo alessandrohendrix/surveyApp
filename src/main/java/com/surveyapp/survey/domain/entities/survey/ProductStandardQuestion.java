@@ -17,7 +17,6 @@ import javax.validation.constraints.NotNull;
 @EqualsAndHashCode(callSuper = true)
 public class ProductStandardQuestion extends Question {
 
-    @NotNull
     @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "kpi_question", referencedColumnName = "ID")

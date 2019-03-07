@@ -8,30 +8,29 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @MappedSuperclass
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
 @NoArgsConstructor
 public abstract class BasePacksize extends BaseEntity{
 
     @Column(name="Amount")
-    @NotBlank
     @Min(value = 1)
     private int amount;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pack_type", referencedColumnName = "ID")
     private PackType type;
 
     @Column(name="Weight")
-    @NotBlank
     @Min(value = 0l)
     private double weight;
 
-    @NotBlank
+    @NotNull
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "pack_measure", referencedColumnName = "ID")
     private PackMeasure measure;

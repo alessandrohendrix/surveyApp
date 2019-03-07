@@ -1,9 +1,11 @@
 package com.surveyapp.survey.domain.dto.product;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.surveyapp.survey.domain.dto.BaseEntityDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 
@@ -12,17 +14,15 @@ import java.io.Serializable;
 @NoArgsConstructor
 @Setter
 @Getter
-public abstract class BaseProductDTO implements Serializable {
+public abstract class BaseProductDTO extends BaseEntityDTO {
 
     @EqualsAndHashCode.Exclude
     @JsonIgnore
     private final long serialVersionUID = 1L;
-    @EqualsAndHashCode.Exclude
-    private int ID;
-    @NotBlank
+    @NotNull
     @Size(min=1)
     private String name;
-    @NotBlank
+    @NotNull
     @Size(min=1)
     private String molecule;
     @NotBlank

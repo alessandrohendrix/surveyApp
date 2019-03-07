@@ -1,23 +1,17 @@
 package com.surveyapp.survey.domain.dto.product;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.surveyapp.survey.domain.dto.BaseEntityDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
-import java.io.Serializable;
 
 @AllArgsConstructor
 @EqualsAndHashCode
 @Getter
 @Setter
 @NoArgsConstructor
-public class DiseaseAreaDTO implements Serializable {
+public class DiseaseAreaDTO extends BaseEntityDTO {
 
-    @EqualsAndHashCode.Exclude
-    @JsonIgnore
-    private final long serialVersionUID = 1L;
     @NotBlank
     private String name;
-    @EqualsAndHashCode.Exclude
-    private int ID;
 }

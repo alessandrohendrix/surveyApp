@@ -1,24 +1,21 @@
 package com.surveyapp.survey.domain.dto.survey;
 
+import com.surveyapp.survey.domain.dto.BaseEntityDTO;
 import com.surveyapp.survey.domain.entities.product.PackMeasure;
 import com.surveyapp.survey.domain.entities.product.PackType;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.io.Serializable;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-public abstract class BaseQuestionDTO implements Serializable {
+@EqualsAndHashCode
+public abstract class BaseQuestionDTO extends BaseEntityDTO {
 
-    private Integer ID;
 
     @NotBlank
     @NotNull
@@ -42,5 +39,6 @@ public abstract class BaseQuestionDTO implements Serializable {
     @NotBlank
     @NotNull
     @Min(1)
+    @EqualsAndHashCode.Exclude
     private int questionRow;
 }

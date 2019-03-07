@@ -6,6 +6,7 @@ import com.surveyapp.survey.domain.entities.survey.KPIQuestion;
 import org.mapstruct.InjectionStrategy;
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -17,7 +18,10 @@ public interface KpiQuestionMapper {
     @IterableMapping(elementTargetType = KPIQuestionDTO.class)
     List<KPIQuestionDTO> kpiQuestionsToKpiQuestionDTOs(List<KPIQuestion> kpiQuestions);
 
+
     KpiQuestionIdDTO kpiQuestionToKPIIdDTO(KPIQuestion kpiQuestion);
+
+    KPIQuestion kpiQuestionIdDTOToKPIQuestion(KpiQuestionIdDTO kpiQuestionIdDTO);
 
     @IterableMapping(elementTargetType = KpiQuestionIdDTO.class)
     List<KpiQuestionIdDTO> kpiQuestionsToKpiQuestionIdDTOs(List<KPIQuestion> kpiQuestions);

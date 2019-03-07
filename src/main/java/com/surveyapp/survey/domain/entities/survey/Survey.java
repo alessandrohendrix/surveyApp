@@ -19,10 +19,9 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 public class Survey extends BaseEntity {
 
-    @NotNull
     @Convert(converter = LocalDateTimeConverter.class)
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
+    @Column(name = "publishing_date")
+    private LocalDateTime publishingDate;
 
     @JsonIgnore
     @NotNull
@@ -46,7 +45,7 @@ public class Survey extends BaseEntity {
     @OneToMany(
             mappedBy = "survey",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             orphanRemoval = true
     )
     private Set<ProductOpenQuestion> productOpenQuestions;
@@ -55,7 +54,7 @@ public class Survey extends BaseEntity {
     @OneToMany(
             mappedBy = "survey",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             orphanRemoval = true
     )
     private Set<CompetitorStandardQuestion> competitorStandardQuestions;
@@ -64,7 +63,7 @@ public class Survey extends BaseEntity {
     @OneToMany(
             mappedBy = "survey",
             fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             orphanRemoval = true
     )
     private Set<CompetitorOpenQuestion> competitorOpenQuestions;
@@ -72,13 +71,13 @@ public class Survey extends BaseEntity {
     @EqualsAndHashCode.Exclude
     private boolean published;
 
-    public Survey(@NotNull LocalDateTime creationDate) {
-        this.creationDate = creationDate;
+    public Survey(LocalDateTime publishingDate) {
+        this.publishingDate = publishingDate;
     }
 
-    public Survey(@NotNull LocalDateTime creationDate, Integer ID) {
+    public Survey(LocalDateTime publishingDate, Integer ID) {
         super(ID);
-        this.creationDate = creationDate;
+        this.publishingDate = publishingDate;
     }
 
 }

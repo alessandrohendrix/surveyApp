@@ -11,7 +11,7 @@ import java.util.Set;
 
 @Entity
 @Table(name = "diseaseArea")
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
 @NoArgsConstructor

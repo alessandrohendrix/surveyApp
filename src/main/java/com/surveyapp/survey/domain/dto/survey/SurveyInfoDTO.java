@@ -1,5 +1,6 @@
 package com.surveyapp.survey.domain.dto.survey;
 
+import com.surveyapp.survey.domain.dto.BaseEntityDTO;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;
@@ -11,11 +12,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @EqualsAndHashCode
-public class SurveyInfoDTO implements Serializable {
+public class SurveyInfoDTO extends BaseEntityDTO {
 
-    @EqualsAndHashCode.Exclude
-    private final long serialVersionUID = 1L;
-    private Integer ID;
     @NotNull
     private LocalDateTime publishingDate;
     @EqualsAndHashCode.Exclude

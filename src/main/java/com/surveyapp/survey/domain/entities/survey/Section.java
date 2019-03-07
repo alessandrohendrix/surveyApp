@@ -26,7 +26,7 @@ public class Section extends BaseEntity {
     @JsonIgnore
     @OneToMany(
             mappedBy = "section",
-            cascade = CascadeType.DETACH,
+            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     private Set<KPIQuestion> KPIQuestions;
@@ -35,7 +35,7 @@ public class Section extends BaseEntity {
     @JsonIgnore
     @OneToMany(
             mappedBy = "section",
-            cascade = CascadeType.DETACH,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
     private Set<ProductOpenQuestion> productOpenQuestions;
@@ -44,7 +44,7 @@ public class Section extends BaseEntity {
     @JsonIgnore
     @OneToMany(
             mappedBy = "section",
-            cascade = CascadeType.DETACH,
+            cascade = {CascadeType.PERSIST, CascadeType.MERGE},
             fetch = FetchType.LAZY
     )
     private Set<CompetitorOpenQuestion> competitorOpenQuestions;

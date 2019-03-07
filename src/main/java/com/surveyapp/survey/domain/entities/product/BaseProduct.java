@@ -10,30 +10,23 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @MappedSuperclass
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @Getter
 @Setter
 @NoArgsConstructor
 public abstract class BaseProduct extends BaseEntity {
 
     @Column(name = "Name")
-    @NotBlank
-    @Size(min=1)
     private String name;
 
     @Column(name = "Molecule")
-    @NotBlank
-    @Size(min=1)
     private String molecule;
 
     @Column(name = "Class")
-    @NotBlank
-    @Size(min=1)
     private String productClass;
 
     @Column(name = "Indication")
-    @NotBlank
-    @Size(min=1)
+  
     private String indication;
 
     @Column(name = "Logo", length = 100000)

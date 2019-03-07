@@ -2,11 +2,8 @@ package com.surveyapp.survey.service.survey.impl;
 
 import com.surveyapp.survey.domain.dto.survey.*;
 import com.surveyapp.survey.domain.entities.product.Competitor;
-import com.surveyapp.survey.domain.entities.product.Product;
 import com.surveyapp.survey.domain.entities.survey.*;
 import com.surveyapp.survey.domain.entities.survey.Enum.SectionEnum;
-import com.surveyapp.survey.mapper.product.CompetitorMapper;
-import com.surveyapp.survey.mapper.product.ProductMapper;
 import com.surveyapp.survey.mapper.survey.OpenQuestionMapper;
 import com.surveyapp.survey.mapper.survey.StandardQuestionMapper;
 import com.surveyapp.survey.repository.survey.CompetitorOpenQuestionRepository;
@@ -29,41 +26,29 @@ public class QuestionSerializerServiceImpl implements QuestionSerializerService 
     private final CompetitorOpenQuestionRepository competitorOpenQuestionRepository;
     private final StandardQuestionMapper standardQuestionMapper;
     private final OpenQuestionMapper openQuestionMapper;
-    private final ProductMapper productMapper;
-    private final CompetitorMapper competitorMapper;
 
     @Autowired
     public QuestionSerializerServiceImpl(
             CompetitorStandardQuestionRepository competitorStandardQuestionRepository,
             CompetitorOpenQuestionRepository competitorOpenQuestionRepository,
             StandardQuestionMapper standardQuestionMapper,
-            OpenQuestionMapper openQuestionMapper,
-            ProductMapper productMapper,
-            CompetitorMapper competitorMapper) {
+            OpenQuestionMapper openQuestionMapper) {
 
         this.competitorStandardQuestionRepository = competitorStandardQuestionRepository;
         this.competitorOpenQuestionRepository = competitorOpenQuestionRepository;
         this.standardQuestionMapper = standardQuestionMapper;
         this.openQuestionMapper = openQuestionMapper;
-        this.productMapper = productMapper;
-        this.competitorMapper = competitorMapper;
     }
 
     @Override
-    public SurveyQuestionDTO aggregateQuestions(Survey survey) {
+    public SurveyQuestionDTO aggregateQuestions(Survey survey, Set<Competitor> competitors) {
 
-        Product product = survey.getProduct();
-        Set<Competitor> competitors = product.getCompetitors();
-        Set<ProductStandardQuestion> productStandardQuestions = survey.getProductStandardQuestions();
-        Set<ProductOpenQuestion> productOpenQuestions = survey.getProductOpenQuestions();
         Map<SectionEnum, ProductQuestionsDTO> productQuestions = aggregateProductQuestions(
-                productStandardQuestions,
-                productOpenQuestions
+                survey.getProductStandardQuestions(),
+                survey.getProductOpenQuestions()
         );
         Map<SectionEnum, CompetitorsQuestionsDTO> competitorsQuestions = aggregateCompetitorsQuestions(competitors, survey);
         SurveyQuestionDTO surveyQuestionDTO = buildSurveyQuestionDTO(
-                product,
-                competitors,
                 productQuestions,
                 competitorsQuestions
         );
@@ -108,7 +93,8 @@ public class QuestionSerializerServiceImpl implements QuestionSerializerService 
             SectionEnum.getSections()
                     .forEach(sectionName -> {
                         Set<StandardQuestionDTO> standardDTO = generateSectionStandardQuestionDTOs(
-                                new HashSet<>(standardQuestions), sectionName
+                                new HashSet<>(standardQuestions),
+                                sectionName
                         );
                         Set<OpenQuestionDTO> openDTO = openQuestions
                                 .stream()
@@ -136,17 +122,10 @@ public class QuestionSerializerServiceImpl implements QuestionSerializerService 
     }
 
 
-    private SurveyQuestionDTO buildSurveyQuestionDTO(Product product,
-                                                     Set<Competitor> competitors,
-                                                     Map<SectionEnum, ProductQuestionsDTO> productQuestions,
+    private SurveyQuestionDTO buildSurveyQuestionDTO(Map<SectionEnum, ProductQuestionsDTO> productQuestions,
                                                      Map<SectionEnum, CompetitorsQuestionsDTO> competitorsQuestions) {
 
-        return new SurveyQuestionDTO(
-                productMapper.productToProductDTO(product),
-                competitorMapper.competitorsToCompetitorDTOs(competitors),
-                productQuestions,
-                competitorsQuestions
-        );
+        return new SurveyQuestionDTO(productQuestions, competitorsQuestions);
     }
 
     private ProductQuestionsDTO buildProductQuestionsDTO(Set<StandardQuestionDTO> productStandardQuestions,

@@ -1,12 +1,16 @@
 package com.surveyapp.survey.service.survey.impl;
 
 import com.surveyapp.survey.domain.dto.survey.KPIQuestionDTO;
-import com.surveyapp.survey.domain.dto.survey.SurveyCreationDTO;
+import com.surveyapp.survey.domain.dto.survey.SurveyDTO;
 import com.surveyapp.survey.domain.dto.survey.SurveyInfoDTO;
 import com.surveyapp.survey.domain.dto.survey.SurveyQuestionDTO;
+import com.surveyapp.survey.domain.entities.product.Competitor;
+import com.surveyapp.survey.domain.entities.product.Product;
 import com.surveyapp.survey.domain.entities.survey.Enum.SectionEnum;
 import com.surveyapp.survey.domain.entities.survey.KPIQuestion;
 import com.surveyapp.survey.domain.entities.survey.Survey;
+import com.surveyapp.survey.mapper.product.CompetitorMapper;
+import com.surveyapp.survey.mapper.product.ProductMapper;
 import com.surveyapp.survey.mapper.survey.KpiQuestionMapper;
 import com.surveyapp.survey.mapper.survey.SurveyMapper;
 import com.surveyapp.survey.repository.survey.KpiQuestionRepository;
@@ -25,27 +29,48 @@ public class SurveySerializerServiceImpl implements SurveySerializerService {
     private final SurveyMapper surveyMapper;
     private final KpiQuestionMapper kpiQuestionMapper;
     private final KpiQuestionRepository kpiQuestionRepository;
+    private final ProductMapper productMapper;
+    private final CompetitorMapper competitorMapper;
 
     @Autowired
-    public SurveySerializerServiceImpl(
-            QuestionSerializerService questionSerializerService,
-            SurveyMapper surveyMapper,
-            KpiQuestionMapper kpiQuestionMapper,
-            KpiQuestionRepository kpiQuestionRepository) {
+    public SurveySerializerServiceImpl(QuestionSerializerService questionSerializerService,
+                                       SurveyMapper surveyMapper,
+                                       KpiQuestionMapper kpiQuestionMapper,
+                                       KpiQuestionRepository kpiQuestionRepository,
+                                       ProductMapper productMapper,
+                                       CompetitorMapper competitorMapper) {
 
         this.questionSerializerService = questionSerializerService;
         this.surveyMapper = surveyMapper;
         this.kpiQuestionMapper = kpiQuestionMapper;
         this.kpiQuestionRepository = kpiQuestionRepository;
+        this.productMapper = productMapper;
+        this.competitorMapper = competitorMapper;
     }
 
     @Override
-    public SurveyCreationDTO generateSurveyCreationDTO(Survey survey) {
+    public SurveyDTO generateSurveyCreationDTO(Survey survey) {
         SurveyInfoDTO surveyInfoDTO = generateSurveyInfoDTO(survey);
-        SurveyQuestionDTO surveyQuestionDTO = questionSerializerService.aggregateQuestions(survey);
+        Product product = survey.getProduct();
+        Set<Competitor> competitors = product.getCompetitors();
+        SurveyQuestionDTO surveyQuestionDTO = questionSerializerService.aggregateQuestions(survey, competitors);
         List<KPIQuestion> kpiQuestions = kpiQuestionRepository.findAll();
-        Map<SectionEnum, List<KPIQuestionDTO>> kpiQuesrionsSections = aggregateKPIQuestionsSections(kpiQuestions);
-        return new SurveyCreationDTO(surveyInfoDTO, surveyQuestionDTO, kpiQuesrionsSections);
+        Map<SectionEnum, List<KPIQuestionDTO>> kpiQuestionsSections = aggregateKPIQuestionsSections(kpiQuestions);
+        return buildSurveyCreationDTO(product, competitors, surveyInfoDTO, surveyQuestionDTO, kpiQuestionsSections);
+    }
+
+    private SurveyDTO buildSurveyCreationDTO(Product product,
+                                             Set<Competitor> competitors,
+                                             SurveyInfoDTO surveyInfoDTO,
+                                             SurveyQuestionDTO surveyQuestionDTO,
+                                             Map<SectionEnum, List<KPIQuestionDTO>> kpiQuestionsSections) {
+
+        return new SurveyDTO(
+                surveyInfoDTO,
+                surveyQuestionDTO,
+                productMapper.productToProductDTO(product),
+                competitorMapper.competitorsToCompetitorDTOs(competitors),
+                kpiQuestionsSections);
     }
 
     @Override
@@ -56,11 +81,6 @@ public class SurveySerializerServiceImpl implements SurveySerializerService {
     @Override
     public Set<SurveyInfoDTO> generateSurveyInfoDTOs(Set<Survey> surveys) {
         return surveyMapper.surveysToSurveyInfoDTOs(surveys);
-    }
-
-    @Override
-    public Survey generateSurvey(SurveyCreationDTO surveyCreationDTO) {
-        return null;
     }
 
     private Map<SectionEnum, List<KPIQuestionDTO>> aggregateKPIQuestionsSections(List<KPIQuestion> kpiQuestions) {

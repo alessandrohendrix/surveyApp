@@ -1,6 +1,6 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.domain.dto.survey.SurveyCreationDTO;
+import com.surveyapp.survey.domain.dto.survey.SurveyDTO;
 import com.surveyapp.survey.domain.dto.survey.SurveyInfoDTO;
 import com.surveyapp.survey.domain.entities.survey.Survey;
 import com.surveyapp.survey.service.survey.SurveySerializerService;
@@ -32,8 +32,8 @@ public class SurveyController {
     public ResponseEntity<?> getMostRecentSurveyQuestions(@RequestParam("productId") Integer productId) {
         try {
             Survey survey = surveyService.findProductMostRecentSurvey(productId);
-            SurveyCreationDTO surveyCreationDTO = surveySerializerService.generateSurveyCreationDTO(survey);
-            return new ResponseEntity<>(surveyCreationDTO, HttpStatus.OK);
+            SurveyDTO surveyDTO = surveySerializerService.generateSurveyCreationDTO(survey);
+            return new ResponseEntity<>(surveyDTO, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
         }
@@ -65,7 +65,7 @@ public class SurveyController {
 
     @PostMapping("/creation")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<?> createSurvey(@RequestBody SurveyCreationDTO surveyCreationDTO) {
+    public ResponseEntity<?> createSurvey(@RequestBody SurveyDTO surveyDTO) {
         return null;
     }
 

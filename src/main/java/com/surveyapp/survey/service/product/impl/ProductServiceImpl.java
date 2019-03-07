@@ -42,6 +42,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product updateProduct(Product product) {
+        product.setPacksizeProduct();
         Product updated = this.productRepository.save(product);
         return updated;
     }
