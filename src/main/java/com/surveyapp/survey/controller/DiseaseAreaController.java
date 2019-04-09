@@ -1,9 +1,10 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.domain.DiseaseArea;
-import com.surveyapp.survey.domain.dto.DiseaseAreaDTO;
-import com.surveyapp.survey.service.DiseaseAreaService;
-import com.surveyapp.survey.utility.mappers.DiseaseAreaMapper;
+import com.surveyapp.survey.domain.entities.product.DiseaseArea;
+import com.surveyapp.survey.domain.dto.product.DiseaseAreaDTO;
+import com.surveyapp.survey.mapper.product.DiseaseAreaMapper;
+import com.surveyapp.survey.service.product.DiseaseAreaService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.Set;
 
@@ -39,11 +39,12 @@ public class DiseaseAreaController {
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<?> addNewDiseaseAreas(@Valid @RequestBody Set<DiseaseAreaDTO> diseaseAreas) {
         try {
-            Set<DiseaseArea> newDiseaseAreas = diseaseAreaMapper.diseaseAreasDTOsToDiseaseAreas(diseaseAreas);
-            Set<DiseaseArea> createdDiseaseAreas = diseaseAreaService.saveDiseaseAreas(newDiseaseAreas);
-            return new ResponseEntity<>(createdDiseaseAreas, HttpStatus.CREATED);
-        } catch (ConstraintViolationException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Disease area name must not be empty");
+            Set<DiseaseArea> toSave = diseaseAreaMapper.diseaseAreasDTOsToDiseaseAreas(diseaseAreas);
+            Set<DiseaseArea> newDiseaseAreas = diseaseAreaService.saveDiseaseAreas(toSave);
+            Set<DiseaseAreaDTO> savedDiseaseAreas = diseaseAreaMapper.diseaseAreasToDiseaseAreaDTOs(newDiseaseAreas);
+            return new ResponseEntity<>(savedDiseaseAreas, HttpStatus.CREATED);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Disease area name must not be empty and must not be repeated");
         }
     }
 
@@ -55,8 +56,8 @@ public class DiseaseAreaController {
             Set<DiseaseArea> updated = diseaseAreaService.saveDiseaseAreas(toUpdate);
             Set<DiseaseAreaDTO> DTOs = diseaseAreaMapper.diseaseAreasToDiseaseAreaDTOs(updated);
             return new ResponseEntity<>(DTOs, HttpStatus.OK);
-        } catch(ConstraintViolationException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Disease area name must not be empty");
+        } catch(Exception e) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Disease area name must not be empty and must not be repeated");
         }
     }
 

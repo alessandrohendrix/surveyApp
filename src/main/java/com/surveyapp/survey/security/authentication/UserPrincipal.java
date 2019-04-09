@@ -1,7 +1,7 @@
 package com.surveyapp.survey.security.authentication;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.surveyapp.survey.security.domain.User;
+import com.surveyapp.survey.security.domain.entities.User;
 import lombok.EqualsAndHashCode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

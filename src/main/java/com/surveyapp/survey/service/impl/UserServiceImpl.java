@@ -1,10 +1,10 @@
 package com.surveyapp.survey.service.impl;
 
-import com.surveyapp.survey.repository.RoleRepository;
-import com.surveyapp.survey.repository.UserRepository;
-import com.surveyapp.survey.security.domain.Role;
+import com.surveyapp.survey.repository.security.RoleRepository;
+import com.surveyapp.survey.repository.security.UserRepository;
+import com.surveyapp.survey.security.domain.entities.Role;
 import com.surveyapp.survey.security.domain.enums.Roles;
-import com.surveyapp.survey.security.domain.User;
+import com.surveyapp.survey.security.domain.entities.User;
 import com.surveyapp.survey.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

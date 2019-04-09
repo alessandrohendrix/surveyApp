@@ -1,9 +1,0 @@
-package com.surveyapp.survey.repository;
-
-import com.surveyapp.survey.domain.DiseaseArea;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface DiseaseAreaRepository extends JpaRepository<DiseaseArea, Integer> {
-}

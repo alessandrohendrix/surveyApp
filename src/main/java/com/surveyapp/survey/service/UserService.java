@@ -1,6 +1,6 @@
 package com.surveyapp.survey.service;
 
-import com.surveyapp.survey.security.domain.User;
+import com.surveyapp.survey.security.domain.entities.User;
 import java.util.Optional;
 
 public interface UserService {

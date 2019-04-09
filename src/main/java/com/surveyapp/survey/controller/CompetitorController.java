@@ -1,9 +1,9 @@
 package com.surveyapp.survey.controller;
 
-import com.surveyapp.survey.domain.Competitor;
-import com.surveyapp.survey.domain.dto.CompetitorDTO;
-import com.surveyapp.survey.service.CompetitorService;
-import com.surveyapp.survey.utility.mappers.CompetitorMapper;
+import com.surveyapp.survey.domain.entities.product.Competitor;
+import com.surveyapp.survey.domain.dto.product.CompetitorDTO;
+import com.surveyapp.survey.mapper.product.CompetitorMapper;
+import com.surveyapp.survey.service.product.CompetitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
